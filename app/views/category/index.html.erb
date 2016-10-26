@@ -1,0 +1,16 @@
+<h1> Categorias </h1>
+<table class="highlight">
+	<tr>
+		<th>Nombre</th>
+		<th>Puntos minimos</th>
+		<th>Puntos maximos</th>
+	</tr>
+	<% Category.all.each do |c| %>
+	<tr>
+		<td><%= c.name %></td>
+		<td><%= c.min_point %></td>
+		<td><%= c.max_point %></td>
+	</tr>
+	<% end %>
+
+</table>
