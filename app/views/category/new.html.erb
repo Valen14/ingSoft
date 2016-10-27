@@ -1,0 +1,28 @@
+
+
+<div class="container">
+	<h1> Crear una categoria </h1>
+
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.label :name %>
+  				<%= f.text_area :name, class: 'form-control', label: 'Nombre', placeholder: 'Ingrese nombre' %>
+  			</div>
+  		</div>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.label :min_point %>
+  				<%= f.text_area :min_point, class: 'form-control', label: 'puntos minimos', placeholder: 'Ingrese puntos minimos' %>
+  			</div>
+  		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.label :max_point %>
+  				<%= f.text_area :max_point, class: 'form-control', label: 'puntos maximos', placeholder: 'Ingrese puntos maximos' %>
+  			</div>
+  		</div>
+  		<%= f.submit "Crear categoria", class: 'btn btn-primary' %>
+  	</div>
+</div>
