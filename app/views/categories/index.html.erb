@@ -1,5 +1,5 @@
 <h1> Categorias </h1>
-<table class="highlight">
+<table class="bordered">
 	<tr>
 		<th>Nombre</th>
 		<th>Puntos minimos</th>
@@ -10,6 +10,9 @@
 		<td><%= c.name %></td>
 		<td><%= c.min_point %></td>
 		<td><%= c.max_point %></td>
+		<td>	<%= link_to '<i class="material-icons">mode_edit</i>  Do it@'.html_safe, 
+					edit_category_path(c),
+					class: "btn-floating btn-large waves-effect waves-light orange" %></td>
 	</tr>
 	<% end %>
 

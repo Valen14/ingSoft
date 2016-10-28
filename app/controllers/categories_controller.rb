@@ -4,11 +4,14 @@ class CategoriesController < ApplicationController
 
 # post
   def create
-  	@category = Category.create(params.require(:name, :min_point, :max_point))
-  	#redirect_to(category_path)
+  	@category = Category.create(params.require(:category).permit(:name, :min_point, :max_point))
+  	redirect_to(categories_path)
   end
 # put
   def update
+  end
+
+  def edit
   end
 
   def destroy
@@ -18,4 +21,6 @@ class CategoriesController < ApplicationController
   	@category = Category.new
   end
 
+  def show
+  end
 end
