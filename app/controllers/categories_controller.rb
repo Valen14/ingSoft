@@ -4,12 +4,23 @@ class CategoriesController < ApplicationController
 
 # post
   def create
-  	@category = Category.create(params.require(:category).permit(:name, :min_point, :max_point))
-  	redirect_to(categories_path)
+  	if@category = Category.create(category_params)
+  	  flash[:success] = "creado!"
+      redirect_to(categories_path)
+    else
+      render 'new'
+    end
   end
 # put
   def update
-  end
+    @category = Category.find(params[:id])
+    if @category.update_attributes(category_params)
+      flash[:success] = "editado!"
+      redirect_to(categories_path)
+    else
+      render 'edit'
+    end
+  end  
 
   def edit
     @category = Category.find(params[:id])
@@ -26,4 +37,10 @@ class CategoriesController < ApplicationController
 
   def show
   end
+
+  private
+
+    def category_params
+      params.require(:category).permit(:name, :min_point, :max_point)
+    end
 end
