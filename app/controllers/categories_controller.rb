@@ -4,7 +4,8 @@ class CategoriesController < ApplicationController
 
 # post
   def create
-  	if@category = Category.create(category_params)
+    @category = Category.new(category_params)
+  	if @category.save
   	  flash[:success] = "creado!"
       redirect_to(categories_path)
     else
