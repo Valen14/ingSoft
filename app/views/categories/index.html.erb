@@ -4,6 +4,8 @@
 		<th>Nombre</th>
 		<th>Puntos minimos</th>
 		<th>Puntos maximos</th>
+		<th>Editar</th>
+		<th>Borrar</th>
 	</tr>
 	<% Category.all.each do |c| %>
 	<tr>
@@ -12,6 +14,9 @@
 		<td><%= c.max_point %></td>
 		<td>	<%= link_to '<i class="material-icons">mode_edit</i>  Do it@'.html_safe, 
 					edit_category_path(c),
+					class: "btn-floating btn-large waves-effect waves-light orange" %></td>
+		<td>	<%= link_to '<i class="material-icons">delete</i>  Do it@'.html_safe, 
+					c, method: :delete,
 					class: "btn-floating btn-large waves-effect waves-light orange" %></td>
 	</tr>
 	<% end %>

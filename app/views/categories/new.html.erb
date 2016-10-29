@@ -1,34 +1,7 @@
-
-
 <div class="row">
 	<h1> Crear una categoria </h1>
-	<%= form_for @category, :html => {:class => 'col s12'} do |f| %>
-
-		<div class="row">
-			<div class="input-field col s12">
-				<%= f.label "nombre", class:"active"  %>
-  				<%= f.text_field :name , class: 'validate'%>
-  			</div>
-  		</div>
-		
-		<div class="row">
-			<div class="input-field col s12">
-				<%= f.label "puntos minimos", class:"active" %>
-  				<%= f.text_field :min_point , class: 'validate', label: 'puntos minimos' %>
-  			</div>
-  		</div>
-
-		<div class="row">
-			<div class="input-field col s12">
-				<%= f.label "puntos maximos", class:"active" %>
-  				<%= f.text_field :max_point , class: 'validate', label: 'puntos maximos' %>
-  			</div>
-  		</div>
-  		<%= f.submit "Crear categoria", class: 'btn waves-effect waves-light' %>
-  		<%= link_to "Volver", categories_path, class: 'btn waves-effect waves-light' %>
-	<% end %>
-  	</div>
- </div>
+	<%= render 'form' %>
+</div>
 
 
 
