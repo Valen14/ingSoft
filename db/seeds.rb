@@ -6,5 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "add categories"
-Category.find_or_create_by(name: "gaucho", min_point: 0, max_point: 5)
-Category.find_or_create_by(name: "gauchaso", min_point: 5, max_point: 10)
+Category.find_or_create_by(name: "gauchito/a", min_point: 0, max_point: 0)
+Category.find_or_create_by(name: "gaucho/a", min_point: 1, max_point: 5)
+Category.find_or_create_by(name: "gauchaso/a", min_point: 6, max_point: 10)

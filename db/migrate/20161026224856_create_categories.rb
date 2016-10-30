@@ -4,7 +4,7 @@ class CreateCategories < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :min_point
       t.integer :max_point
-
+      #t.use :boolean
       t.timestamps
     end
   end
