@@ -17,7 +17,8 @@ class CategoriesController < ApplicationController
 # put
   def update
     @category = Category.find(params[:id])
-    if nosuperpuse() 
+    #preguntar
+    if nosuperpuse()
       if @category.update_attributes(category_params)
         #flash[:success] = "editado!"
         redirect_to(categories_path)
@@ -26,7 +27,7 @@ class CategoriesController < ApplicationController
       #flash[:success] = "error!"
       render 'edit'
     end
-  end  
+  end
 
   def edit
     @category = Category.find(params[:id])

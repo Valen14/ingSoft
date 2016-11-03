@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_user: 1
+  points: 1
+  card_number: MyString
+  due_date: 2016-11-03
+
+two:
+  id_user: 1
+  points: 1
+  card_number: MyString
+  due_date: 2016-11-03

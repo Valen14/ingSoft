@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_achievement: 1
+  name: MyString
+  dni: 1
+  birthdate: 2016-11-03
+  phone: MyString
+  is_admin: false
+
+two:
+  id_achievement: 1
+  name: MyString
+  dni: 1
+  birthdate: 2016-11-03
+  phone: MyString
+  is_admin: false

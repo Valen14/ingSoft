@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_user: 1
+  id_city: 1
+  title: MyString
+  description: MyText
+  done: false
+
+two:
+  id_user: 1
+  id_city: 1
+  title: MyString
+  description: MyText
+  done: false
