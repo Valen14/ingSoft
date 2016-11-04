@@ -1,6 +1,4 @@
-<h1>Editing Achievement</h1>
-
-<%= render 'form', achievement: @achievement %>
-
-<%= link_to 'Show', @achievement %> |
-<%= link_to 'Back', achievements_path %>
+<div class="row">
+	<h1> Editar Logro: <%= @achievement.name %> </h1>
+	<%= render 'form' %>
+</div>

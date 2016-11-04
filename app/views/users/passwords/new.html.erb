@@ -1,0 +1,27 @@
+
+<div align="center" class="container">
+
+<div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+  <div class="row">
+      <h5>olvidaste tu contraseña?</h5>
+  </div>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+  <div class="input-field col s12">
+
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+
+    <div  class="row">
+      <div class="input-field col s12">
+      <%= f.submit "Restablecer", class: 'btn waves-effect waves-light' %>
+      <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light' %>
+      </div>
+    </div>
+<% end %>
+
+<%= render "users/shared/links" %>
+  </div>

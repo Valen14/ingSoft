@@ -1,31 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Achievements</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Point min</th>
-      <th>Point max</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @achievements.each do |achievement| %>
-      <tr>
-        <td><%= achievement.name %></td>
-        <td><%= achievement.point_min %></td>
-        <td><%= achievement.point_max %></td>
-        <td><%= link_to 'Show', achievement %></td>
-        <td><%= link_to 'Edit', edit_achievement_path(achievement) %></td>
-        <td><%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+<div class="row">
+<h1> Logros </h1>
+<table class="bordered">
+	<tr>
+		<th>Nombre</th>
+		<th>Puntos minimos</th>
+		<th>Puntos maximos</th>
+		<th>Editar</th>
+		<th>Borrar</th>
+	</tr>
+	<% Achievement.all.each do |c| %>
+	<tr>
+		<td><%= c.name %></td>
+		<td><%= c.point_min %></td>
+		<td><%= c.point_max %></td>
+		<td>	<%= link_to '<i class="material-icons">mode_edit</i>  Do it@'.html_safe,
+					edit_achievement_path(c),
+					class: "btn-floating btn-large waves-effect waves-light orange" %></td>
+		<td>	<%= link_to '<i class="material-icons">delete</i>  Do it@'.html_safe,
+					c, method: :delete,
+					class: "btn-floating btn-large waves-effect waves-light orange" %></td>
+	</tr>
+	<% end %>
 </table>
-
-<br>
-
-<%= link_to 'New Achievement', new_achievement_path %>
+</div>
+<div class="row">
+	<%= link_to '<i class="material-icons">add</i>  Do it@'.html_safe,
+		new_achievement_path,
+		class: "btn-floating btn-large waves-effect waves-light orange" %>
+</div>

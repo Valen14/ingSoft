@@ -1,32 +1,26 @@
-<%= form_for(achievement) do |f| %>
-  <% if achievement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(achievement.errors.count, "error") %> prohibited this achievement from being saved:</h2>
+<%= form_for @achievement, :html => {:class => 'col s12'} do |f| %>
 
-      <ul>
-      <% achievement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+		<div class="row">
+			<div class="input-field col s12">
+				<%= f.label "nombre", class:"active"  %>
+  				<%= f.text_field :name , class: 'validate'%>
+  			</div>
+  		</div>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+		<div class="row">
+			<div class="input-field col s12">
+				<%= f.label "puntos minimos", class:"active" %>
+  				<%= f.text_field :point_min , class: 'validate', label: 'puntos minimos' %>
+  			</div>
+  		</div>
 
-  <div class="field">
-    <%= f.label :point_min %>
-    <%= f.number_field :point_min %>
-  </div>
-
-  <div class="field">
-    <%= f.label :point_max %>
-    <%= f.number_field :point_max %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+		<div class="row">
+			<div class="input-field col s12">
+				<%= f.label "puntos maximos", class:"active" %>
+  				<%= f.text_field :point_max , class: 'validate', label: 'puntos maximos' %>
+  			</div>
+  		</div>
+  		<%= f.submit "Guardar", class: 'btn waves-effect waves-light' %>
+  		<%= link_to "Volver", achievements_path, class: 'btn waves-effect waves-light' %>
+  	</div>
 <% end %>

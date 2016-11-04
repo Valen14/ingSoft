@@ -26,13 +26,16 @@ class AchievementsController < ApplicationController
   def create
     @achievement = Achievement.new(achievement_params)
 
-    respond_to do |format|
-      if @achievement.save
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }
-        format.json { render :show, status: :created, location: @achievement }
-      else
-        format.html { render :new }
-        format.json { render json: @achievement.errors, status: :unprocessable_entity }
+
+      if nosuperpuse()
+        respond_to do |format|
+        if @achievement.save
+          format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }
+          format.json { render :show, status: :created, location: @achievement }
+        else
+          format.html { render :new }
+          format.json { render json: @achievement.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -70,5 +73,19 @@ class AchievementsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def achievement_params
       params.require(:achievement).permit(:name, :point_min, :point_max)
+    end
+
+    private
+    def nosuperpuse()
+      @nosuperpuse = true
+      Achievement.all.each do |c|
+       #3 casos. 1  todo intervalo adentro , 2 solo el min, 3 solo el max
+       if (((@achievement.point_min >= c.point_min) and (@achievement.point_max <= c.point_max))or
+          ((@achievement.point_min >= c.point_min) and (@achievement.point_min <= c.point_max))or
+          ((@achievement.point_max >= c.point_min) and (@achievement.point_max <= c.point_max)))
+          @nosuperpuse = false
+        end
+      end
+      return @nosuperpuse
     end
 end

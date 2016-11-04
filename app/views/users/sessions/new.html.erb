@@ -1,0 +1,38 @@
+<div align="center" class="container">
+
+  <div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+    <div class="row">
+       <h5>Entrar</h5>
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="input-field col s12">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.label :Contraseña %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div align="left" class="input-field col s12 m12 l12  login-text">
+          <%= f.check_box :remember_me %>
+          <%= f.label :recordarme %>
+        </div>
+      <% end -%>
+
+      <div  class="row">
+        <div class="input-field col s12">
+        <%= f.submit "Entrar", class: 'btn waves-effect waves-light' %>
+        <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light' %>
+        </div>
+      </div>
+
+    <% end %>
+
+    <div class="row">
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>
