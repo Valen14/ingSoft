@@ -19,23 +19,28 @@
       </div>
     <% end %>
 
-    <div >
-      <%= image_tag "portada.png"%>
-    </div>
+    <header>
 
-    <nav class="light-blue orange" role="navigation">
-      <div class="nav-wrapper">
-        <a href="<%= posts_path %>" class="brand-logo center"><%= image_tag "logo.png", size: "60x60"  %></a>
-        <div align="right">
-          <a href="" class="waves-effect waves-light btn-large leal orange darken-1">Comprar Puntos</a>
-          <% if current_user %>
-            Bienvenido <%= current_user.email %> <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
-          <% else %>
-            <%= link_to "Entrar / Registrarse", new_user_session_path, class: 'waves-effect waves-light btn-large leal orange darken-1' %>
-          <% end %>
-        </div>
-      </div>
-    </nav>
+     <nav class="top-nav orange">
+           <div class="nav-wrapper">
+               <a href="<%= posts_path %>" class="brand-logo" style="padding:8px">
+                   <%= image_tag "logo.png", size: "45x45"  %>
+               </a>
+               <ul id="nav-mobile" class="right hide-on-med-and-down">
+                 <li><a href="">Comprar Puntos</a></li>
+                 <li><% if current_user %>
+                   Bienvenido <%= current_user.email %> <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+                 <% else %>
+                   <%= link_to "Entrar / Registrarse", new_user_session_path %>
+                 <% end %></li>
+               </ul>
+         </div>
+     </nav>
+ </header>
+
+ <div >
+   <%= image_tag "portada.png"%>
+ </div>
 
     <%= yield %>
 
