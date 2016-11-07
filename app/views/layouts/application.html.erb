@@ -11,14 +11,6 @@
   </head>
 
   <body>
-
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %> alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" hidden="true">×</button>
-        <%= value %>
-      </div>
-    <% end %>
-
     <header>
 
      <nav class="top-nav orange">
@@ -28,11 +20,14 @@
                </a>
                <ul id="nav-mobile" class="right hide-on-med-and-down">
                  <li><a href="">Comprar Puntos</a></li>
-                 <li><% if current_user %>
-                   Bienvenido <%= current_user.email %> <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
-                 <% else %>
-                   <%= link_to "Entrar / Registrarse", new_user_session_path %>
-                 <% end %></li>
+                 <li>
+                   <% if current_user %>
+                      <a href=""><%= current_user.name %></a></li>
+                      <li><%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+                   <% else %>
+                      <%= link_to "Entrar / Registrarse", new_user_session_path %>
+                   <% end %>
+               </li>
                </ul>
          </div>
      </nav>
