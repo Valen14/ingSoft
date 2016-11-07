@@ -5,7 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "add categories"
-Category.find_or_create_by(name: "gauchito/a", min_point: 0, max_point: 0)
-Category.find_or_create_by(name: "gaucho/a", min_point: 1, max_point: 5)
-Category.find_or_create_by(name: "gauchaso/a", min_point: 6, max_point: 10)
+puts "add Achievement"
+Achievement.find_or_create_by(name: "gauchito/a", point_min: 0, point_max: 0)
+Achievement.find_or_create_by(name: "gaucho/a", point_min: 1, point_max: 5)
+Achievement.find_or_create_by(name: "gauchaso/a", point_min: 6, point_max: 10)
+puts "add Post"
+Post.find_or_create_by(id:"0" ,id_user: "0" ,title:"Busco acompañante de viaje1" ,id_city: "0" ,description: "1 Soy camionero y busco una persona que me acompañe en mi viaje hasta Rawson porque sufro problemas de sueño. Saldríamos el primer fin de semana de octubre y retornaríamos el fin de semana siguiente. * Condición fundamental: debe cebar buenos mates")
+Post.find_or_create_by(id:"1" ,id_user: "1" ,title:"Busco acompañante de viaje2" ,id_city: "0" ,description: "2 Soy camionero y busco una persona que me acompañe en mi viaje hasta Rawson porque sufro problemas de sueño. Saldríamos el primer fin de semana de octubre y retornaríamos el fin de semana siguiente. * Condición fundamental: debe cebar buenos mates")
+Post.find_or_create_by(id:"2" ,id_user: "2" ,title:"Busco acompañante de viaje3" ,id_city: "0" ,description: "3 Soy camionero y busco una persona que me acompañe en mi viaje hasta Rawson porque sufro problemas de sueño. Saldríamos el primer fin de semana de octubre y retornaríamos el fin de semana siguiente. * Condición fundamental: debe cebar buenos mates")
+puts "add User"
+User.find_or_create_by(name:"usuario_test" ,dni:"123456", birthdate:"01/01/2016", phone:"1213456" ,is_admin:"false" ,email:"usuario_test@test.com", encrypted_password:"usuario_test" )
+User.find_or_create_by(name:"admin_test" ,dni:"123456", birthdate:"01/01/2016", phone:"1213456" ,is_admin:"false" ,email:"admin_test@test.com", encrypted_password:"admin_test" )
+puts "add City"
+City.find_or_create_by(name: "la plata")

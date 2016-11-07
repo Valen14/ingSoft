@@ -11,6 +11,7 @@
   </head>
 
   <body>
+
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %> alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" hidden="true">×</button>
@@ -18,11 +19,23 @@
       </div>
     <% end %>
 
-    <% if current_user %>
-      Bienvenido <%= current_user.email %> <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to 'Login', new_user_session_path %>
-    <% end %>
+    <div >
+      <%= image_tag "portada.png"%>
+    </div>
+
+    <nav class="light-blue orange" role="navigation">
+      <div class="nav-wrapper">
+        <a href="<%= posts_path %>" class="brand-logo center"><%= image_tag "logo.png", size: "60x60"  %></a>
+        <div align="right">
+          <a href="" class="waves-effect waves-light btn-large leal orange darken-1">Comprar Puntos</a>
+          <% if current_user %>
+            Bienvenido <%= current_user.email %> <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "Entrar / Registrarse", new_user_session_path, class: 'waves-effect waves-light btn-large leal orange darken-1' %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
 
     <%= yield %>
 

@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<br>
+
+<% @posts.each do |post| %>
+
+<div class="row">
+  <div class="col s3">
+    <div class="thumbnail">
+      <%= image_tag "logo.png"   %>
+      <div class="caption">
+        <h3><%= post.title %></h3>
+        <p><%= post.description %></p>
+        <p><%= link_to "Ver mas", achievements_path, class: 'btn waves-effect waves-light teal orange' %></p>
+      </div>
+    </div>
+  </div>
+</div>
+    <% end %>
+
+<%= link_to 'New Post', new_post_path %>

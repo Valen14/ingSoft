@@ -4,8 +4,9 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.integer :id_user
       t.integer :id_city
       t.string :title
+      t.string :photo_url  , default: "logo.png"
       t.text :description
-      t.boolean :done
+      t.boolean :done , default: false
 
       t.timestamps
     end

@@ -42,8 +42,9 @@
 
 <div class="row">
 <div class="input-field col s12">
-<%= f.label :"fecha de nacimiento", class:"active" %>
-<%= f.date_select :birthdate, class: "datepicker" %>
+
+<%= f.label :"fecha de nacimiento" , class:"active" %>
+<%= f.date_field :birthdate, class: "birthdate" %>
 </div>
 </div>
 
@@ -52,8 +53,8 @@
 
   <div  class="row">
     <div class="input-field col s12">
-    <%= f.submit "Crear", class: 'btn waves-effect waves-light' %>
-    <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light' %>
+    <%= f.submit "Crear", class: 'btn waves-effect waves-light teal orange' %>
+    <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light teal orange' %>
     </div>
   </div>
 
