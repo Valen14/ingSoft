@@ -69,6 +69,6 @@ class PostulationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def postulation_params
-      params.require(:postulation).permit(:id_user, :id_gauchada, :estimate_date, :description)
+      params.require(:postulation).permit(:user_id, :gauchada_id, :estimate_date, :description)
     end
 end

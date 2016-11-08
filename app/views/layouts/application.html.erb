@@ -25,12 +25,18 @@
                       <a href=""><%= current_user.name %></a></li>
                       <li><%= link_to 'Salir', destroy_user_session_path, method: :delete %>
                    <% else %>
-                      <%= link_to "Entrar / Registrarse", new_user_session_path %>
+                      <%= link_to "Entrar", new_user_session_path %></li>
+                      <li><%= link_to "Registrarse", new_user_registration_path %>
                    <% end %>
                </li>
                </ul>
          </div>
      </nav>
+     <% if flash[:notice] %>
+<div class=“alert alert-danger'>
+<%= flash[:notice] %>
+</div>
+<% end %>
  </header>
 
  <div >

@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20161103184943) do
   end
 
   create_table "answers", force: :cascade do |t|
-    t.integer  "id_user"
-    t.integer  "id_comment"
+    t.integer  "user_id"
+    t.integer  "comment"
     t.text     "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,15 +38,15 @@ ActiveRecord::Schema.define(version: 20161103184943) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "id_user"
+    t.integer  "user_id"
     t.text     "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "id_user"
-    t.integer  "id_city"
+    t.integer  "user_id"
+    t.integer  "city_id"
     t.string   "title"
     t.string   "photo_url",   default: "logo.png"
     t.text     "description"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20161103184943) do
   end
 
   create_table "postulations", force: :cascade do |t|
-    t.integer  "id_user"
-    t.integer  "id_gauchada"
+    t.integer  "user_id"
+    t.integer  "gauchada_id"
     t.date     "estimate_date"
     t.text     "description"
     t.datetime "created_at",    null: false
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20161103184943) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.integer  "id_user"
+    t.integer  "user_id"
     t.integer  "points"
     t.string   "card_number"
     t.date     "due_date"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20161103184943) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer  "id_achievement",         default: 0
+    t.integer  "achievement_id",         default: 1
     t.string   "name"
     t.integer  "dni"
     t.date     "birthdate"

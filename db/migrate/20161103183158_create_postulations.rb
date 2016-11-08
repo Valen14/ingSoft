@@ -1,8 +1,8 @@
 class CreatePostulations < ActiveRecord::Migration[5.0]
   def change
     create_table :postulations do |t|
-      t.integer :id_user
-      t.integer :id_gauchada
+      t.integer :user_id
+      t.integer :gauchada_id
       t.date :estimate_date
       t.text :description
 
