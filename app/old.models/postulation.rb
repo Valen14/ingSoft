@@ -1,2 +1,0 @@
-class Postulation < ApplicationRecord
-end
