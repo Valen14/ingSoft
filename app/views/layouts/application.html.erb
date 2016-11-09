@@ -21,7 +21,7 @@
                        <%= image_tag "logo.png", size: "45x45"  %>
                    </a>
                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                     <li><a href="">Comprar Puntos</a></li>
+                     <li>  <%= link_to "Comprar Puntos" , new_sale_path %></li>
                      <li>
                        <% if current_user %>
                           <%= link_to current_user.name , user_path(current_user) %></a></li>
@@ -40,7 +40,7 @@
 
   </body>
 
-  <footer class="page-footer grey darken-3">
+  <footer class="page-footer orange lighten">
       <%= image_tag "portada.png"%>
       <div class="footer-copyright grey darken-4">
         <div class="container">

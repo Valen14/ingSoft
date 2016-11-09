@@ -17,10 +17,13 @@
 
           <!-- Gauchada item -->
           <div class="col s4">
-              <div class="card small">
+              <div class="card medium">
+                <div  style=" padding:5px " >
+                    <%= post.user.name %>               <%= post.created_at.to_date %>
+                <h5> <%= post.title %>  </h5>
+                </div>
                   <div class="card-image">
-                      <%= image_tag "tbnail.jpg"%>
-                      <span class="card-title"><%= post.title %></span>
+                      <%= image_tag post.photo_url, size:"128x140" %>
                   </div>
                   <div class="card-content">
                       <p><%= truncate( post.description, length: 100, separator: ' ') %></p>
@@ -29,7 +32,7 @@
                       <%= link_to "Ver mas", post %>
                   </div>
               </div>
+              </br></br>
           </div>
-
       <% end %> <!-- ends loop for posts -->
     </div>
