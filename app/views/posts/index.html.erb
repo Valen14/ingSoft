@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+    <!-- Floating action buton for new post (if logged user) -->
+    <% if current_user %>
+        <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
+           <%= link_to '<i class="material-icons">add</i>  Do it@'.html_safe,
+                 new_post_path,
+                 class: "btn-floating btn-large waves-effect waves-light orange" %>
+        </div>
+    <% end %>
+
+    <div class="row container">
+
+      <h1>Posts</h1>
+
+      <% @posts.each do |post| %>
+
+          <!-- Gauchada item -->
+          <div class="col s4">
+              <div class="card small">
+                  <div class="card-image">
+                      <%= image_tag "tbnail.jpg"%>
+                      <span class="card-title"><%= post.title %></span>
+                  </div>
+                  <div class="card-content">
+                      <p><%= truncate( post.description, length: 100, separator: ' ') %></p>
+                  </div>
+                  <div class="card-action">
+                      <%= link_to "Ver mas", post %>
+                  </div>
+              </div>
+          </div>
+
+      <% end %> <!-- ends loop for posts -->
+    </div>
