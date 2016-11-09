@@ -1,3 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <%= link_to "Editar Perfil", edit_user_registration_path(current_user), class: 'btn waves-effect waves-light teal orange' %></br></br>
+    <% if current_user.is_admin %>
+    <%= link_to "Logros", achievements_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
+    <% end %>

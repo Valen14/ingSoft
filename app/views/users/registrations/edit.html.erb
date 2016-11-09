@@ -1,70 +1,69 @@
 <div align="center" class="container" >
+  <div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+    <div class="row">
+        <h5> Editar Perfil</h5>
+    </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
 
-<div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-  <div class="row">
-      <h5> Editar Perfil</h5>
-  </div>
+        <div class="input-field col s12">
+          <%= f.label :email, class:"active" %>
+          <%= f.email_field :email, autofocus: true %>
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+        <div class="input-field col s12">
+          <%= f.label "Contraseña" %>
+          <%= f.password_field :password, autocomplete: "off" , class:"active"%>
+          <% if @minimum_password_length %>
+            <br />
+            <i>(dejar en blanco si no queres cambiarla)</i><br />
+            <em>( minimo <%= @minimum_password_length %> caracteres )</em>
+          <% end %>
+        </div>
 
-  <div class="input-field col s12">
-    <%= f.label :email, class:"active" %>
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+        <div class="input-field col s12">
+          <%= f.label "Confirmar contraseña",  class:"active"%><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+        <div class="input-field col s12">
+        <%= f.label "Nombre", class:"active" %>
+        <%= f.text_field :name %>
+        </div>
 
-  <div class="input-field col s12">
-    <%= f.label "Contraseña" %>
-    <%= f.password_field :password, autocomplete: "off" , class:"active"%>
-    <% if @minimum_password_length %>
-      <br />
-      <i>(dejar en blanco si no queres cambiarla)</i><br />
-      <em>( minimo <%= @minimum_password_length %> caracteres )</em>
-    <% end %>
-  </div>
+        <div class="input-field col s12">
+        <%= f.label "DNI", class:"active" %>
+        <%= f.number_field :dni %>
+        </div>
 
-  <div class="input-field col s12">
-    <%= f.label "Confirmar contraseña",  class:"active"%><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+        <div class="input-field col s12">
+        <%= f.label "TEL", class:"active" %>
+        <%= f.text_field :phone %>
+        </div>
 
+        <div class="row">
+          <div class="input-field col s12">
+          <%= f.label :"fecha de nacimiento" , class:"active" %>
+          <%= f.date_field :birthdate, class: "birthdate" %>
+          </div>
+        </div>
 
-  <div class="input-field col s12">
-<%= f.label "Nombre", class:"active" %>
-<%= f.text_field :name %>
+        <div class="input-field col s12">
+          <%= f.label "Contraseña actual" %>
+          <%= f.password_field :current_password, autocomplete: "off" ,  class:"active" %>
+        <br />  <i>(necesitas poner la contraseña actual para actualizar los cambios)</i><br />
+        </div>
+
+        <div class="actions">
+        <%= f.submit "Guardar", class: 'btn waves-effect waves-light teal orange' %>
+        <%= link_to "Volver", user_path(current_user), class: 'btn waves-effect waves-light teal orange' %></br></br>
+        </div>
+      <% end %>
+
+      <p>Disgustado? </p>
+<p><%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro?" }, method: :delete , class: 'btn waves-effect waves-light red' %></p>
+    </div>
 </div>
-
-  <div class="input-field col s12">
-<%= f.label "DNI", class:"active" %>
-<%= f.number_field :dni %>
-</div>
-  <div class="input-field col s12">
-<%= f.label "TEL", class:"active" %>
-<%= f.text_field :phone %>
-</div>
-
-<div class="row">
-<div class="input-field col s12">
-
-<%= f.label :"fecha de nacimiento" , class:"active" %>
-<%= f.date_field :birthdate, class: "birthdate" %>
-</div>
-</div>
-<div class="input-field col s12">
-  <%= f.label "Contraseña actual" %>
-  <%= f.password_field :current_password, autocomplete: "off" ,  class:"active" %>
-<br />  <i>(necesitas poner la contraseña actual para actualizar los cambios)</i><br />
-</div>
-  <div class="actions">
-  <%= f.submit "Guardar", class: 'btn waves-effect waves-light teal orange' %>
-  <%= link_to "Volver", user_path(current_user), class: 'btn waves-effect waves-light teal orange' %></br></br>
-  </div>
-<% end %>
-
-<h5>Borrar cuenta!</h5>
-
-<p>Disgustado? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
