@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+      <div class="container">
+        <div class="row">
+             <div class="col s12">
+               <div class="card">
+
+                 <!-- card title -->
+                 <div class="card-image">
+                     <%= image_tag "tbnail.jpg"%>
+                     <span class="card-title"><%= @post.title %></span>
+                 </div>
+
+                 <!-- card content -->
+                 <div class="card-content">
+                     <%= @post.name(user_id) %>
+                     <%= @post.description %>
+                 </div>
+
+                 <!-- card action -->
+                 <div class="card-action">
+                   <a href="#">Te hago la gauchada</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+      </div>
+
+
+<p>
+  <strong>Id user:</strong>
+  <%= @post.user_id %>
+</p>
+
+<p>
+  <strong>Id city:</strong>
+  <%= @post.city_id %>
+</p>
+
+<p>
+  <strong>Done:</strong>
+  <%= @post.done %>
+</p>

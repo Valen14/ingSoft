@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gauchada</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+         <!-- header -->
+  <header>
+         <nav class="top-nav orange">
+               <div class="nav-wrapper">
+                   <a href="<%= posts_path %>" class="brand-logo" style="padding:8px">
+                       <%= image_tag "logo.png", size: "45x45"  %>
+                   </a>
+                   <ul id="nav-mobile" class="right hide-on-med-and-down">
+                     <li><a href="">Comprar Puntos</a></li>
+                     <li>
+                       <% if current_user %>
+                          <%= link_to current_user.name , user_path(current_user) %></a></li>
+                          <li><%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+                       <% else %>
+                          <%= link_to "Entrar", new_user_session_path %></li>
+                          <li><%= link_to "Registrarse", new_user_registration_path %>
+                       <% end %>
+                   </li>
+                   </ul>
+             </div>
+         </nav>
+    </header>
+
+    <%= yield %>
+
+  </body>
+
+  <footer class="page-footer grey darken-3">
+      <%= image_tag "portada.png"%>
+      <div class="footer-copyright grey darken-4">
+        <div class="container">
+          2016 Copyright - All Rights Deserverd
+        <a class="grey-text text-lighten-4 right">Ing Soft</a>
+        </div>
+      </div>
+  </footer>
+
+</html>
