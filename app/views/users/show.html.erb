@@ -1,34 +1,3 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Id achievement:</strong>
-  <%= @user.achievement_id %>
-</p>
-
-<p>
-  <strong>Nombre:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Dni:</strong>
-  <%= @user.dni %>
-</p>
-
-<p>
-  <strong>Fecha de nacimiento:</strong>
-  <%= @user.birthdate %>
-</p>
-
-<p>
-  <strong>Tel.:</strong>
-  <%= @user.phone %>
-</p>
-
-<p>
-  <strong>Is admin:</strong>
-  <%= @user.is_admin %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to "Editar Perfil", edit_user_registration_path(current_user), class: 'btn waves-effect waves-light teal orange' %></br></br>

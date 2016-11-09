@@ -7,8 +7,8 @@ class User < ApplicationRecord
          has_many :sales
          has_many :answers
          has_many :comments
-         has_many :posts
+       has_many :posts
          has_many :postulations
-         belongs_to :achievement
+        belongs_to :achievement
 
 end
