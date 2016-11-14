@@ -25,17 +25,16 @@ class AchievementsController < ApplicationController
   # POST /achievements.json
   def create
     @achievement = Achievement.new(achievement_params)
-
-
+    respond_to do |format|
       if nosuperpuse()
-        respond_to do |format|
         if @achievement.save
-          format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }
+          format.html { redirect_to achievements_url, notice: 'Logro creado correctamente.' }
           format.json { render :show, status: :created, location: @achievement }
-        else
-          format.html { render :new }
-          format.json { render json: @achievement.errors, status: :unprocessable_entity }
         end
+      else
+        flash[:notice] = 'Error no se pudo crear, revisa el rango de puntos'
+        format.html { render :new}
+        format.json { render json: @achievement.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,10 +44,11 @@ class AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully updated.' }
+        format.html { redirect_to achievements_url, notice: 'Logro editado correctamente.' }
         format.json { render :show, status: :ok, location: @achievement }
       else
-        format.html { render :edit }
+        flash[:notice] = 'Error no se pudo editar, revisa el rango de puntos'
+        format.html { render :edit}
         format.json { render json: @achievement.errors, status: :unprocessable_entity }
       end
     end
@@ -57,10 +57,16 @@ class AchievementsController < ApplicationController
   # DELETE /achievements/1
   # DELETE /achievements/1.json
   def destroy
-    @achievement.destroy
+    @users = User.all
     respond_to do |format|
-      format.html { redirect_to achievements_url, notice: 'Achievement was successfully destroyed.' }
-      format.json { head :no_content }
+      if not(@users.find_by achievement_id: @achievement.id)
+        @achievement.destroy
+        format.html { redirect_to achievements_url, notice: 'Logro Borrado Correctamente' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to achievements_url, notice: 'Error hay usuarios asociados a este logro' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -80,10 +86,13 @@ class AchievementsController < ApplicationController
       @nosuperpuse = true
       Achievement.all.each do |c|
        #3 casos. 1  todo intervalo adentro , 2 solo el min, 3 solo el max
-       if (((@achievement.point_min >= c.point_min) and (@achievement.point_max <= c.point_max))or
-          ((@achievement.point_min >= c.point_min) and (@achievement.point_min <= c.point_max))or
-          ((@achievement.point_max >= c.point_min) and (@achievement.point_max <= c.point_max)))
-          @nosuperpuse = false
+       # para no comprobarse con uno mismo
+       if (@achievement.id != c.id)
+         if (((@achievement.point_min >= c.point_min) and (@achievement.point_max <= c.point_max))or
+            ((@achievement.point_min >= c.point_min) and (@achievement.point_min <= c.point_max))or
+            ((@achievement.point_max >= c.point_min) and (@achievement.point_max <= c.point_max)))
+            @nosuperpuse = false
+          end
         end
       end
       return @nosuperpuse
