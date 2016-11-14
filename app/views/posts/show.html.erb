@@ -13,7 +13,7 @@
 
                  <!-- card content -->
                  <div class="card-content">
-                     <%= @post.name(user_id) %>
+                     <%= User.find(@post.user_id).name %>
                      <%= @post.description %>
                  </div>
 
