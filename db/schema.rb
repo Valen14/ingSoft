@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20161103184943) do
 
   create_table "users", force: :cascade do |t|
     t.integer  "achievement_id",         default: 1
+    t.integer  "point",                  default: 1
     t.string   "name"
     t.integer  "dni"
     t.date     "birthdate"

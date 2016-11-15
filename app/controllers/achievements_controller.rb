@@ -26,15 +26,21 @@ class AchievementsController < ApplicationController
   def create
     @achievement = Achievement.new(achievement_params)
     respond_to do |format|
-      if nosuperpuse()
-        if @achievement.save
-          format.html { redirect_to achievements_url, notice: 'Logro creado correctamente.' }
-          format.json { render :show, status: :created, location: @achievement }
+      if(@achievement.name != nil and @achievement.point_min != nil and @achievement.point_max != nil)
+        if ( nosuperpuse() and correctformat() )
+          if @achievement.save
+            format.html { redirect_to achievements_url, notice: 'Logro creado correctamente.' }
+            format.json { render :show, status: :created, location: @achievement }
+          end
+        else
+          format.html { render :new}
+          format.json { render json: @achievement.errors, status: :unprocessable_entity }
+          flash[:notice] = 'Error no se pudo crear, revisa el rango de puntos'
         end
       else
-        flash[:notice] = 'Error no se pudo crear, revisa el rango de puntos'
-        format.html { render :new}
-        format.json { render json: @achievement.errors, status: :unprocessable_entity }
+      format.html { render :new}
+      format.json { render json: @achievement.errors, status: :unprocessable_entity }
+      flash[:notice] = 'Error no se pudo crear, campos en blanco'
       end
     end
   end
@@ -43,13 +49,21 @@ class AchievementsController < ApplicationController
   # PATCH/PUT /achievements/1.json
   def update
     respond_to do |format|
-      if @achievement.update(achievement_params)
-        format.html { redirect_to achievements_url, notice: 'Logro editado correctamente.' }
-        format.json { render :show, status: :ok, location: @achievement }
+      if(@achievement.name != nil and @achievement.point_min != nil and @achievement.point_max != nil)
+        if ( nosuperpuse() and correctformat() )
+          if @achievement.update(achievement_params)
+            format.html { redirect_to achievements_url, notice: 'Logro editado correctamente.' }
+            format.json { render :show, status: :ok, location: @achievement }
+          end
+        else
+          flash[:notice] = 'Error no se pudo editar, revisa el rango de puntos'
+          format.html { render :edit}
+          format.json { render json: @achievement.errors, status: :unprocessable_entity }
+        end
       else
-        flash[:notice] = 'Error no se pudo editar, revisa el rango de puntos'
-        format.html { render :edit}
+        format.html { render :new}
         format.json { render json: @achievement.errors, status: :unprocessable_entity }
+        flash[:notice] = 'Error no se pudo crear, campos en blanco'
       end
     end
   end
@@ -82,12 +96,19 @@ class AchievementsController < ApplicationController
     end
 
     private
+    def correctformat()
+      return ((@achievement.point_min >= 0) and (@achievement.point_max >= 0) and (@achievement.point_min < @achievement.point_max)and (@achievement.point_min != @achievement.point_max))
+    end
+
+    private
     def nosuperpuse()
       @nosuperpuse = true
       Achievement.all.each do |c|
        #3 casos. 1  todo intervalo adentro , 2 solo el min, 3 solo el max
        # para no comprobarse con uno mismo
-       if (@achievement.id != c.id)
+       flash[:notice] = @achievement.id , c.id
+
+       if ((@achievement.id != c.id))
          if (((@achievement.point_min >= c.point_min) and (@achievement.point_max <= c.point_max))or
             ((@achievement.point_min >= c.point_min) and (@achievement.point_min <= c.point_max))or
             ((@achievement.point_max >= c.point_min) and (@achievement.point_max <= c.point_max)))

@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "add Achievement"
-Achievement.find_or_create_by(name: "gauchito/a", point_min: 0, point_max: 0)
-Achievement.find_or_create_by(name: "gaucho/a", point_min: 1, point_max: 5)
+Achievement.find_or_create_by(name: "gauchito/a", point_min: 0, point_max: 1)
+Achievement.find_or_create_by(name: "gaucho/a", point_min: 2, point_max: 5)
 Achievement.find_or_create_by(name: "gauchaso/a", point_min: 6, point_max: 10)
 puts "add Post"
 Post.create(user_id: "13" ,title:"Busco acompañante de viaje" ,city_id: "0" ,description: "1 Soy camionero y busco una persona que me acompañe en mi viaje hasta Rawson porque sufro problemas de sueño. Saldríamos el primer fin de semana de octubre y retornaríamos el fin de semana siguiente. * Condición fundamental: debe cebar buenos mates")

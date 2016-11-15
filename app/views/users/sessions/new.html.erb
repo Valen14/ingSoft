@@ -1,5 +1,5 @@
 <div align="center" class="container">
-
+	<p id="notice"><%= notice %></p>
   <div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
     <div class="row">
        <h5>Entrar</h5>
@@ -16,9 +16,9 @@
       </div>
 
       <% if devise_mapping.rememberable? -%>
-        <div align="left" class="input-field col s12 m12 l12  login-text">
-          <%= f.check_box :remember_me %>
-          <%= f.label :recordarme %>
+        <div align="left" class="input-field col s12 login-text">
+          <input type="checkbox" id="remember_me" />
+          <label for="remember_me">Recordarme</label><br /><br />
         </div>
       <% end -%>
 
