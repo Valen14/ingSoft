@@ -1,34 +1,78 @@
 <p id="notice"><%= notice %></p>
+<div  class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
 
-      <div class="container">
-        <div class="row">
-             <div class="col s12">
-               <div class="card">
-                 <p>
-                   <%= @post.user.name %>
-                 </p>
+        <p><%= @post.user.name %></p>
+        <p><%= @post.city.name %></p>
+        <!-- si esta logueado y es el dueño del post puede editarlo / borrarlo -->
+        <% if user_signed_in? && current_user.id == @post.user_id %>
+                  <%= link_to '<i class="material-icons">mode_edit</i>  Do it@'.html_safe,
+                    edit_post_path,
+                    class: "btn-floating btn-large waves-effect waves-light orange" %></li>
+            <%= link_to '<i class="material-icons">delete</i>  Do it@'.html_safe,
+                     @post, method: :delete,
+                     class: "btn-floating btn-large waves-effect waves-light red" %></li>
 
-                 <p>
-                   <%= @post.city.name %>
-                 </p>
+          
+        <% end %>
 
                  <!-- card title -->
-                 <div class="card-image">
-                     <%= image_tag "tbnail.jpg"%>
-                     <span class="card-title"><%= @post.title %></span>
-                 </div>
+        <div class="card-image">
+            <%= image_tag @post.photo_url , size:"128x400"  %>
+            <span class="card-title"><%= @post.title %></span>
+        </div>
+        <!-- card content -->
+        <div class="card-content">
+           <%= @post.description %>
+        </div>
+        <!-- card action -->
+        <div class="card-action">
+          <!-- si esta logueado-->
+          <% if user_signed_in? && current_user.id != @post.user_id%>
 
-                 <!-- card content -->
-                 <div class="card-content">
-                     <%= @post.user.name %>
-                     <%= @post.description %>
-                 </div>
+          <!-- form postularse-->
+            <% @postulation = Postulation.new %>
+            <%= form_for @postulation do |f| %>
+                <% if @postulation.errors.any? %>
+                  <div id="error_explanation">
+                    <em><%= pluralize(@postulation.errors.count, "error") %> errores para poder guardar:</em>
+                      <ul>
+                        <% postulation.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                  </div>
+                <% end %>
 
-                 <!-- card action -->
-                 <div class="card-action">
-                   <a href="#">Te hago la gauchada</a>
-                 </div>
-               </div>
-             </div>
-           </div>
+                <%= f.hidden_field :post_id, value: @post.id %>
+
+                <div class="input-field col s12">
+                  <%= f.label "Fecha en la que podes hacer la gauchada" %>
+                  <%= f.date_field :estimate_date, class: "estimate_date" %>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                     <%= f.label "Descripcion" %>
+                     <%= f.text_area :description, length: 100, class:"materialize-textarea"%>
+                  </div>
+                </div>
+
+                <div class="actions">
+                   <%= f.submit 'Te puedo hacer la gauchada', class: 'btn waves-effect waves-light teal orange' %>
+                </div>
+            <% end %>
+
+            <!-- si esta logueado y es el dueño del post puede editarlo / borrarlo -->
+
+          <% end %>
+            <div align="right">
+            <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
+            </div>
+        </div>
       </div>
+    </div>
+  </div>
+</div>

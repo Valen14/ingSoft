@@ -25,7 +25,7 @@ class PostulationsController < ApplicationController
   # POST /postulations.json
   def create
     @postulation = Postulation.new(postulation_params)
-
+    @postulation.user = current_user
     respond_to do |format|
       if @postulation.save
         format.html { redirect_to @postulation, notice: 'Postulation was successfully created.' }
@@ -69,6 +69,6 @@ class PostulationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def postulation_params
-      params.require(:postulation).permit(:user_id, :gauchada_id, :estimate_date, :description)
+      params.require(:postulation).permit(:post_id, :estimate_date, :description)
     end
 end

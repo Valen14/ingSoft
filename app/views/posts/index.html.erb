@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
     <!-- Floating action buton for new post (if logged user) -->
-    <% if current_user %>
+    <% if user_signed_in? %>
         <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
            <%= link_to '<i class="material-icons">add</i>  Do it@'.html_safe,
                  new_post_path,

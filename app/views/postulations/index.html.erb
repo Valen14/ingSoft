@@ -16,8 +16,8 @@
   <tbody>
     <% @postulations.each do |postulation| %>
       <tr>
-        <td><%= postulation.id_user %></td>
-        <td><%= postulation.id_gauchada %></td>
+        <td><%= postulation.user_id %></td>
+        <td><%= postulation.post_id %></td>
         <td><%= postulation.estimate_date %></td>
         <td><%= postulation.description %></td>
         <td><%= link_to 'Show', postulation %></td>
