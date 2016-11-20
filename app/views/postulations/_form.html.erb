@@ -10,21 +10,15 @@
       </ul>
     </div>
   <% end %>
+  <%= postulation.user_id %>
 
-  <div class="input-field col s12">
-    <%= f.label "Fecha en la que podes hacer la gauchada" %>
-    <%= f.date_field :estimate_date, class: "estimate_date" %>
-  </div>
 
-  <div class="row">
-    <div class="input-field col s12">
-      <%= f.label "Descripcion" %>
-      <%= f.text_area :description, length: 100, class:"materialize-textarea"%>
-    </div>
-  </div>
+    <%= f.hidden_field :estimate_date %>
+      <%= f.hidden_field :description%>
+
 
   <div class="actions">
-    <%= f.submit "Guardar", class: 'btn waves-effect waves-light teal orange' %>
-    <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
+    <%= f.submit "Elegir", class: 'btn waves-effect waves-light teal orange' %>
+    <%= link_to "Volver", postulation.post, class: 'btn waves-effect waves-light teal orange' %></br></br>
   </div>
 <% end %>

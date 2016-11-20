@@ -15,7 +15,7 @@
                      @post, method: :delete,
                      class: "btn-floating btn-large waves-effect waves-light red" %></li>
 
-          
+
         <% end %>
 
                  <!-- card title -->
@@ -30,46 +30,93 @@
         <!-- card action -->
         <div class="card-action">
           <!-- si esta logueado-->
-          <% if user_signed_in? && current_user.id != @post.user_id%>
+          <% if user_signed_in? %>
+            <%  @postulation_choose = @post.postulations.find_by user_id: @post.user_elect_id %>
 
-          <!-- form postularse-->
-            <% @postulation = Postulation.new %>
-            <%= form_for @postulation do |f| %>
-                <% if @postulation.errors.any? %>
-                  <div id="error_explanation">
-                    <em><%= pluralize(@postulation.errors.count, "error") %> errores para poder guardar:</em>
-                      <ul>
-                        <% postulation.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                        <% end %>
-                      </ul>
-                  </div>
+            <% if current_user.id != @post.user_id%>
+            <!-- see only no dueños -->
+            <!-- see only si no se postularon a este post -->
+              <% @postulation_user =  @post.postulations.find_by user_id: current_user.id  %>
+              <% if nil == @postulation_user %>
+            <!-- form postularse-->
+                <% @postulation = Postulation.new %>
+                <%= form_for @postulation do |f| %>
+                    <% if @postulation.errors.any? %>
+                      <div id="error_explanation">
+                        <em><%= pluralize(@postulation.errors.count, "error") %> errores para poder guardar:</em>
+                          <ul>
+                            <% postulation.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                            <% end %>
+                          </ul>
+                      </div>
+                    <% end %>
+
+                    <%= f.hidden_field :post_id, value: @post.id %>
+
+                    <div class="input-field col s12">
+                      <%= f.label "Fecha en la que podes hacer la gauchada" %>
+                      <%= f.date_field :estimate_date, class: "estimate_date" %>
+                    </div>
+
+                    <div class="row">
+                      <div class="input-field col s12">
+                         <%= f.label "Descripcion" %>
+                         <%= f.text_area :description, length: 100, class:"materialize-textarea"%>
+                      </div>
+                    </div>
+
+                    <div class="actions">
+                       <%= f.submit 'Te puedo hacer la gauchada', class: 'btn waves-effect waves-light teal orange' %>
+                    </div>
                 <% end %>
-
-                <%= f.hidden_field :post_id, value: @post.id %>
-
-                <div class="input-field col s12">
-                  <%= f.label "Fecha en la que podes hacer la gauchada" %>
-                  <%= f.date_field :estimate_date, class: "estimate_date" %>
-                </div>
-
+              <% else %>
+                  ya estas postulado
+                  <% if @post.user_elect_id == current_user.id %>
+                  el usuario te eligio para que le cumplas el favor
+                  <p> <%= link_to 'Datos de la postulacion', @postulation_choose %></p>
+                  <% end %>
+              <% end %>
+            <% else %>
+              <!-- postulados a este post see only dueño del post-->
+              <!-- si ya eligio a alguno-->
+              <% if @post.user_elect_id != nil %>
+                ya elegiste
+                <p> <%= link_to 'Datos de la postulacion', @postulation_choose %></p>
+              <% else %>
                 <div class="row">
-                  <div class="input-field col s12">
-                     <%= f.label "Descripcion" %>
-                     <%= f.text_area :description, length: 100, class:"materialize-textarea"%>
-                  </div>
+                <h5>Postulados</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Dia estimado</th>
+                        <th>Descricion</th>
+                        <th colspan="1"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @postulations = @post.postulations %>
+                      <% @postulations.each do |postulation| %>
+                        <tr>
+                          <td><%= postulation.user.name %></td>
+                          <td><%= postulation.estimate_date %></td>
+                          <td><%= postulation.description %></td>
+                          <td><%= link_to 'Elegir', edit_postulation_path(postulation) %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
                 </div>
+              <% end %>
 
-                <div class="actions">
-                   <%= f.submit 'Te puedo hacer la gauchada', class: 'btn waves-effect waves-light teal orange' %>
-                </div>
             <% end %>
-
-            <!-- si esta logueado y es el dueño del post puede editarlo / borrarlo -->
+          <% else %>
+            <%= link_to "Registrate para poder hacerle la gauchada!", new_user_registration_path%></br></br>
 
           <% end %>
             <div align="right">
-            <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
+              <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
             </div>
         </div>
       </div>

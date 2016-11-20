@@ -1,5 +1,5 @@
 class PostulationsController < ApplicationController
-  before_action :set_postulation, only: [:show, :edit, :update, :destroy]
+  before_action :set_postulation, only: [:show, :edit, :update, :destroy, :choose]
 
   # GET /postulations
   # GET /postulations.json
@@ -28,8 +28,8 @@ class PostulationsController < ApplicationController
     @postulation.user = current_user
     respond_to do |format|
       if @postulation.save
-        format.html { redirect_to @postulation, notice: 'Postulation was successfully created.' }
-        format.json { render :show, status: :created, location: @postulation }
+        format.html { redirect_to @postulation.post, notice: 'te postulaste para hacer la gauchada.' }
+        format.json { render :show, status: :created, location: @postulation.post }
       else
         format.html { render :new }
         format.json { render json: @postulation.errors, status: :unprocessable_entity }
@@ -42,8 +42,9 @@ class PostulationsController < ApplicationController
   def update
     respond_to do |format|
       if @postulation.update(postulation_params)
-        format.html { redirect_to @postulation, notice: 'Postulation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @postulation }
+        @postulation.post.update(:user_elect_id => @postulation.user_id)
+        format.html { redirect_to @postulation, notice: 'lo elegiste' }
+        format.json { render :show, status: :ok, location: @postulation.post }
       else
         format.html { render :edit }
         format.json { render json: @postulation.errors, status: :unprocessable_entity }

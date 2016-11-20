@@ -47,13 +47,14 @@ ActiveRecord::Schema.define(version: 20161103184943) do
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "user_elect_id"
     t.integer  "city_id"
     t.string   "title"
-    t.string   "photo_url",   default: "logo.png"
+    t.string   "photo_url",     default: "logo.png"
     t.text     "description"
-    t.boolean  "done",        default: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.boolean  "done",          default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "postulations", force: :cascade do |t|

@@ -1,24 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div align="center" class="container" >
+	<p id="notice"><%= notice %></p>
+	<div align="left" class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+        <p>
+          <strong>Nombre postulado elegido:</strong>
+          <%= @postulation.user.name %>
+        </p>
+        </br>
+        <p>
+          <strong>Titulo de gauchada en cuestion:</strong>
+          <%= @postulation.post.title%>
+        </p>
 
-<p>
-  <strong>Id user:</strong>
-  <%= @postulation.user_id %>
-</p>
+        <p>
+          <strong>Fecha en la que el postulado se compromete:</strong>
+          <%= @postulation.estimate_date %>
+        </p>
 
-<p>
-  <strong>Id gauchada:</strong>
-  <%= @postulation.post_id %>
-</p>
+        <p>
+          <strong>Descripcion:</strong>
+          <%= @postulation.description %>
+        </p>
 
-<p>
-  <strong>Estimate date:</strong>
-  <%= @postulation.estimate_date %>
-</p>
+        </br>
+        <p>
+          <strong>Datos de contacto del Postulado: <%= @postulation.user.name %></strong>
+        </p>
+        <p>
+          <strong>telefono:</strong>
+          <%= @postulation.user.phone%>
+        </p>
+        <p>
+          <strong>correo:</strong>
+          <%= @postulation.user.email%>
+        </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @postulation.description %>
-</p>
+        </br>
+        <p>
+          <strong>Datos de contacto del dueño de la gauchada: <%= @postulation.post.user.name %></strong>
+        </p>
+        <p>
+          <strong>telefono:</strong>
+          <%= @postulation.post.user.phone%>
+        </p>
+        <p>
+          <strong>correo:</strong>
+          <%= @postulation.post.user.email%>
+        </p>
 
-<%= link_to 'Edit', edit_postulation_path(@postulation) %> |
-<%= link_to 'Back', postulations_path %>
+        <%= link_to "Volver",  @postulation.post, class: 'btn waves-effect waves-light teal orange' %></br></br>
+
+    </div>
+</div>
