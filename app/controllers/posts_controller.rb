@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :not_done, :done]
 
   # GET /posts
   # GET /posts.json
@@ -16,9 +16,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-
     @postulation = Postulation.new
-
   end
 
   # GET /posts/1/edit
@@ -53,6 +51,24 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def done
+    @post.update(done: true )
+    @user = User.find(@post.user_elect_id)
+    @point = @user.point + 1
+    @user.update(point: @point )
+    flash[:notice] = 'Gauchada resuelta.'
+    redirect_to @post
+  end
+
+  def not_done
+    @post.update(done: false )
+    @user = User.find(@post.user_elect_id)
+    @point = @user.point - 2
+    @user.update(point: @point )
+    flash[:notice] = 'Gauchada no resuelta.'
+    redirect_to @post
   end
 
   # DELETE /posts/1

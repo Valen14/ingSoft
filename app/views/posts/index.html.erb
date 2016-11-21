@@ -14,7 +14,7 @@
       <h4>Gauchadas</h4>
 
       <% @posts.each do |post| %>
-
+        <% if ((post.done != true) && (post.user_elect_id == nil)) %>
           <!-- Gauchada item -->
           <div class="col s4">
               <div class="card medium">
@@ -34,5 +34,6 @@
               </div>
               </br></br>
           </div>
+        <% end %>
       <% end %> <!-- ends loop for posts -->
     </div>

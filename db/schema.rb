@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20161103184943) do
     t.string   "title"
     t.string   "photo_url",     default: "logo.png"
     t.text     "description"
-    t.boolean  "done",          default: false
+    t.boolean  "done"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end

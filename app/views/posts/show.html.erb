@@ -14,8 +14,6 @@
             <%= link_to '<i class="material-icons">delete</i>  Do it@'.html_safe,
                      @post, method: :delete,
                      class: "btn-floating btn-large waves-effect waves-light red" %></li>
-
-
         <% end %>
 
                  <!-- card title -->
@@ -83,6 +81,18 @@
               <% if @post.user_elect_id != nil %>
                 ya elegiste
                 <p> <%= link_to 'Datos de la postulacion', @postulation_choose %></p>
+                <p> El usuario elegido ya cumplio la gauchada ?</p>
+                <% if @post.done == nil %>
+                  <p> <%= link_to 'Si', done_post_path(@post), method: :post %>  </p>
+                  <p> <%= link_to 'No',  not_done_post_path(@post), method: :post  %> </p>
+                <% else %>
+                  <% if @post.done == true %>
+                     la gauchada ya fue hecha
+                  <% else %>
+                     la gauchada no fue hecha
+                  <% end %>
+                <% end %>
+
               <% else %>
                 <div class="row">
                 <h5>Postulados</h5>
@@ -90,6 +100,7 @@
                     <thead>
                       <tr>
                         <th>Nombre</th>
+                        <th>Putos</th>
                         <th>Dia estimado</th>
                         <th>Descricion</th>
                         <th colspan="1"></th>
@@ -100,6 +111,7 @@
                       <% @postulations.each do |postulation| %>
                         <tr>
                           <td><%= postulation.user.name %></td>
+                          <td><%= postulation.user.point %></td>
                           <td><%= postulation.estimate_date %></td>
                           <td><%= postulation.description %></td>
                           <td><%= link_to 'Elegir', edit_postulation_path(postulation) %></td>

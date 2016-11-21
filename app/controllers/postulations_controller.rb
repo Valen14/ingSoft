@@ -42,7 +42,8 @@ class PostulationsController < ApplicationController
   def update
     respond_to do |format|
       if @postulation.update(postulation_params)
-        @postulation.post.update(:user_elect_id => @postulation.user_id)
+        @postulation.post.update(:user_elect_id => @postulation.user_id )
+        #  eliminar las otras postulaciones
         format.html { redirect_to @postulation, notice: 'lo elegiste' }
         format.json { render :show, status: :ok, location: @postulation.post }
       else
