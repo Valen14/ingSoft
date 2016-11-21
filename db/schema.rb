@@ -67,10 +67,13 @@ ActiveRecord::Schema.define(version: 20161103184943) do
   create_table "sales", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "points"
-    t.string   "card_number"
+    t.integer  "card_number"
     t.date     "due_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name_titular"
+    t.integer  "dni"
+    t.date     "card_fecha"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "users", force: :cascade do |t|

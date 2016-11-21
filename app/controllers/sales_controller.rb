@@ -24,15 +24,20 @@ class SalesController < ApplicationController
   # POST /sales
   # POST /sales.json
   def create
-    @sale = Sale.new(sale_params)
 
-    respond_to do |format|
-      if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
-        format.json { render :show, status: :created, location: @sale }
+      @sale = Sale.new(sale_params)
+      respond_to do |format|
+
+       @sale.user_id = current_user.id
+       point =  current_user.point + @sale.points
+       User.find(current_user.id).update(point: point )
+        if @sale.save
+          format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+          format.json { render :show, status: :created, location: @sale }
+
       else
-        format.html { render :new }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
+          format.html { render :new }
+          format.json { render json: @sale.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +74,6 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:user_id, :points, :card_number, :due_date)
+      params.require(:sale).permit(:user_id, :points, :card_number, :due_date,:card_fecha,:name_titular,:dni)
     end
 end
