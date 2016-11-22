@@ -27,19 +27,22 @@ class SalesController < ApplicationController
 
       @sale = Sale.new(sale_params)
       respond_to do |format|
-
+    if @sale.card_number == 12345 || @sale.card_number == 54321
        @sale.user_id = current_user.id
        point =  current_user.point + @sale.points
        User.find(current_user.id).update(point: point )
         if @sale.save
           format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
           format.json { render :show, status: :created, location: @sale }
-
-      else
+        else
           format.html { render :new }
           format.json { render json: @sale.errors, status: :unprocessable_entity }
-      end
-    end
+        end
+    else
+      format.html { render :new }
+      flash[:notice] = 'datos de la tarjeta de credito no validos'
+       end
+     end
   end
 
   # PATCH/PUT /sales/1
