@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<div align="right">
+  <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
+</div>
+<% if @search != nil %>
+  <% if @search.empty? %>
+    tu busqueda no produjo Resultados
+  <% else %>
+  resultados de la busqueda:
+      <div class="row container">
+        <h4>Gauchadas</h4>
+        <% @search.each do |post| %>
+          <% if ((post.done != true) && (post.user_elect_id == nil)) %>
+            <!-- Gauchada item -->
+            <div class="col s4">
+                <div class="card medium">
+                  <div  style=" padding:5px " >
+                      <%= post.user.name %>               <%= post.created_at.to_date %>
+                  <h5> <%= post.title %>  </h5>
+                  </div>
+                    <div class="card-image">
+                        <%= image_tag post.photo_url, size:"128x140" %>
+                    </div>
+                    <div class="card-content">
+                        <p><%= truncate( post.description, length: 100, separator: ' ') %></p>
+                    </div>
+                    <div class="card-action">
+                        <%= link_to "Ver mas", post %>
+                    </div>
+                </div>
+                </br></br>
+            </div>
+          <% end %>
+        <% end %> <!-- ends loop for posts -->
+      </div>
+    <% end %>
+
+  <% end %>

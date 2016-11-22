@@ -71,6 +71,29 @@ class PostsController < ApplicationController
     redirect_to @post
   end
 
+    def search
+  #    @posts = Post.all
+
+  #    @search = @search.where(title: params[:title]) unless params[:title] == ''
+  #    @search = @search.where(city_id: params[:city_id]) unless params[:city_id] == ''
+  #    @search = @search.where(ciudad: params[:create_at]) unless params[:create_at] == ''
+    if !params[:title].present? and !params[:city_id].present? and !params[:create_at].present?
+      flash[:notice] = 'no ingresaste ningun filtro de busqueda'
+    else
+      @search = Post.all
+      if params[:title].present?
+        @search = @search.where("title ILIKE ?", "%#{params[:title]}%")
+      end
+      if params[:city_id].present?
+        @search = @search.where("city_id = ?", params[:city_id])
+      end
+      if params[:create_at].present?
+        @search = @search.where("created_at = ?", params[:created_at])
+      end
+    end
+  end
+
+
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy

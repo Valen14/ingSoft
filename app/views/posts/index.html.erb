@@ -1,3 +1,20 @@
+
+</br>
+<nav class="top-nav orange lighten-1">
+  <div class="nav-wrapper">
+    Busqueda de Gauchadas
+    <ul id="nav-mobile" aling="right" class="right hide-on-med-and-down">
+      <%= form_tag search_post_path(@posts) do %>
+      <li> <%= text_field_tag :title, params[:title], class: "form-control", placeholder: "Titulo" %>%>  </li>
+      <li> <%= label_tag 'Fecha' %>  </li>
+      <li>  <%= date_field :created_at , params[:created_at], class: "datepicker" %> </li>
+      <li> <p> <%= select_tag :city_id, options_from_collection_for_select(City.all, "id", "name", params[:city_id]), prompt: "Ciudad", class: "form-control" %> </p> </li>
+      <li> <%= submit_tag 'search' , class: 'material-icons orange' %>  </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
 <p id="notice"><%= notice %></p>
 
     <!-- Floating action buton for new post (if logged user) -->
@@ -11,8 +28,8 @@
 
     <div class="row container">
 
-      <h4>Gauchadas</h4>
 
+      <h4>Gauchadas</h4>
       <% @posts.each do |post| %>
         <% if ((post.done != true) && (post.user_elect_id == nil)) %>
           <!-- Gauchada item -->

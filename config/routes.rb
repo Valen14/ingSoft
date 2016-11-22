@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :posts do
-   post 'done', on: :member
-   post 'not_done', on: :member
+    member do
+     post 'done'
+     post 'not_done'
+     post 'search'
+     get 'search_index'
+
+    end
   end
 
   resources :cities
