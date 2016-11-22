@@ -1,24 +1,8 @@
 <p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Id user:</strong>
-  <%= @sale.id_user %>
-</p>
-
-<p>
-  <strong>Points:</strong>
+  <strong>Se te acreditaron: </strong>
   <%= @sale.points %>
+  <strong> puntos. </strong>
 </p>
 
-<p>
-  <strong>Card number:</strong>
-  <%= @sale.card_number %>
-</p>
-
-<p>
-  <strong>Due date:</strong>
-  <%= @sale.due_date %>
-</p>
-
-<%= link_to 'Edit', edit_sale_path(@sale) %> |
-<%= link_to 'Back', sales_path %>
+<%= link_to 'volver al menu principal', posts_path %>

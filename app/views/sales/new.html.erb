@@ -1,9 +1,14 @@
 <div align="center" class="container" >
 	<p id="notice"><%= notice %></p>
 	<div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-		<h5> Publicar una Gauchada </h5>
-
-		<%= render 'form', sale: @sale %>
-
+     <div class="row">
+	     <h5> Comprar Puntos </h5>
+	     <p> Valor x Punto $12 </p>
+	     <% if user_signed_in? %>
+	        <%= render 'form' , sale: @sale %>
+	     <%else%>
+	     <%= link_to "Para comprar puntos debes iniciar sesion" , new_user_session_path%>
+	     <%end%>
+	 	</div>
 	</div>
 </div>
