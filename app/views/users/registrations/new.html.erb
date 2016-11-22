@@ -8,12 +8,12 @@
 
   <div class="input-field col s12">
     <%= f.label :email, class:"active" %>
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, required: true  %>
   </div>
 
   <div class="input-field col s12">
     <%= f.label :password, class:"active" %>
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", required: true  %>
     <% if @minimum_password_length %>
     <em>( minimo <%= @minimum_password_length %> caracteres )</em>
     <% end %>
@@ -21,30 +21,30 @@
 
   <div class="input-field col s12">
     <%= f.label :password_confirmation, class:"active" %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", required: true  %>
   </div>
 
       <div class="input-field col s12">
     <%= f.label :name, class:"active" %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, required: true  %>
   </div>
 
       <div class="input-field col s12">
     <%= f.label :dni, class:"active" %>
-    <%= f.number_field :dni %>
+    <%= f.number_field :dni, required: true  %>
   </div>
 
 
       <div class="input-field col s12">
     <%= f.label :phone, class:"active" %>
-    <%= f.text_field :phone %>
+    <%= f.text_field :phone, required: true  %>
   </div>
 
 <div class="row">
 <div class="input-field col s12">
 
 <%= f.label :"fecha de nacimiento"  %>
-<%= f.date_field :birthdate, class: "birthdate"  %>
+<%= f.date_field :birthdate, class: "birthdate", required: true   %>
 </div>
 </div>
 

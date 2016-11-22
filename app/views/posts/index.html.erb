@@ -5,10 +5,12 @@
     Busqueda de Gauchadas
     <ul id="nav-mobile" aling="right" class="right hide-on-med-and-down">
       <%= form_tag search_post_path(@posts) do %>
-      <li> <%= text_field_tag :title, params[:title], class: "form-control", placeholder: "Titulo" %>%>  </li>
-      <li> <%= label_tag 'Fecha' %>  </li>
-      <li>  <%= date_field :created_at , params[:created_at], class: "datepicker" %> </li>
-      <li> <p> <%= select_tag :city_id, options_from_collection_for_select(City.all, "id", "name", params[:city_id]), prompt: "Ciudad", class: "form-control" %> </p> </li>
+      <li> <%= label_tag  "Titulo: " ,nil,class:"white-text" %>  </li>
+      <li> <%= text_field_tag :title, params[:title], class: "form-control ", placeholder: "Ingrese Titulo" %>%>  </li>
+      <li> <%= label_tag  "Fecha: " ,nil,class:"white-text" %>  </li>
+      <li>  <%= date_field :created_at , params[:created_at], class: "datepicker " , placeholder: "Elija Fecha" %> </li>
+      <li> <%= label_tag  "Ciudad: " ,nil,class:"white-text" %>  </li>
+      <li> <p> <%= select_tag :city_id, options_from_collection_for_select(City.all, "id", "name", params[:city_id]), prompt: "Elija ciudad", class: "form-control blue-grey-text text-lighten-4 " %> </p> </li>
       <li> <%= submit_tag 'search' , class: 'material-icons orange' %>  </li>
       <% end %>
     </ul>
@@ -36,8 +38,8 @@
           <div class="col s4">
               <div class="card medium">
                 <div  style=" padding:5px " >
-                    <%= post.user.name %>               <%= post.created_at.to_date %>
-                <h5> <%= post.title %>  </h5>
+                    <%= post.user.name %> | <%= post.created_at.to_date %> | <%= post.city.name %>
+                <h5 class="orange-text"> <%= post.title %>  </h5>
                 </div>
                   <div class="card-image">
                       <%= image_tag post.photo_url, size:"128x140" %>

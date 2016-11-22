@@ -4,16 +4,15 @@
     <div class="col s12">
       <div class="card">
 
-        <p><%= @post.user.name %></p>
-        <p><%= @post.city.name %></p>
+        <p><%= @post.user.name %> | <%= @post.created_at.to_date %> | <%= @post.city.name %></p>
         <!-- si esta logueado y es el dueño del post puede editarlo / borrarlo -->
         <% if user_signed_in? && current_user.id == @post.user_id %>
-                  <%= link_to '<i class="material-icons">mode_edit</i>  Do it@'.html_safe,
+                <p align="right">    <%= link_to '<i class="material-icons">mode_edit</i>  Do it@'.html_safe,
                     edit_post_path,
-                    class: "btn-floating btn-large waves-effect waves-light orange" %></li>
+                    class: "btn-floating btn-large waves-effect waves-light orange" %>
             <%= link_to '<i class="material-icons">delete</i>  Do it@'.html_safe,
                      @post, method: :delete,
-                     class: "btn-floating btn-large waves-effect waves-light red" %></li>
+                     class: "btn-floating btn-large waves-effect waves-light red" %>  </p>
         <% end %>
 
                  <!-- card title -->
@@ -54,13 +53,13 @@
 
                     <div class="input-field col s12">
                       <%= f.label "Fecha en la que podes hacer la gauchada" %>
-                      <%= f.date_field :estimate_date, class: "estimate_date" %>
+                      <%= f.date_field :estimate_date, class: "estimate_date" , required: true %>
                     </div>
 
                     <div class="row">
                       <div class="input-field col s12">
                          <%= f.label "Descripcion" %>
-                         <%= f.text_area :description, length: 100, class:"materialize-textarea"%>
+                         <%= f.text_area :description, length: 100, class:"materialize-textarea",required: true %>
                       </div>
                     </div>
 
@@ -130,6 +129,54 @@
             <div align="right">
               <%= link_to "Volver", posts_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
             </div>
+
+            <h5>Comentarios</h5>
+            <% @comments = Comment.where(post_id: @post.id) %>
+            <% @comments.each do |comment| %>
+                    <div class="row">
+                      <div class="col s12 m6">
+                        <div class="card orange lighten-1">
+                          <div class="card-content white-text">
+                            <span class="card-title"><%= comment.user.name %></span>
+                            <p><%= comment.comment %></p>
+                          </div>
+                          <div class="card-action">
+                            <% if comment.answer %>
+                              <%= comment.answer.answer %>
+                            <% else %>
+                              <% if user_signed_in? && current_user.id == @post.user_id %>
+                                <% @answer = Answer.new %>
+                                <%= form_for @answer do |f| %>
+                                  <%= f.hidden_field :comment_id, value: comment.id %>
+                                  <div class="field">
+                                    <%= f.label "Responder", required: true, class: "white-text" %>
+                                    <%= f.text_area :answer, length: 100, class:"materialize-textarea white-text"%>
+                                  </div>
+                                  <div class="actions">
+                                    <%= f.submit "Responder", class: 'btn waves-effect waves-light teal orange' %>
+                                  </div>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            <% end %>
+
+            <% if user_signed_in? && current_user.id != @post.user_id %>
+              <% @comment = Comment.new %>
+              <%= form_for @comment do |f| %>
+                <%= f.hidden_field :post_id, value: @post.id %>
+                <div class="field">
+                  <%= f.label "Comentar", required: true, class: "orange-text" %>
+                  <%= f.text_area :comment, length: 100, class:"materialize-textarea orange-text", required: true %>
+                </div>
+                <div class="actions">
+                  <%= f.submit " Comentar", class: 'btn waves-effect waves-light teal orange' %>
+                </div>
+              <% end %>
+            <% end %>
         </div>
       </div>
     </div>
