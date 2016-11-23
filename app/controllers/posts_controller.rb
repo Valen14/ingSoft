@@ -28,6 +28,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    point = current_user.point - 1 
+    User.find(current_user.id).update(point: point )
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Gauchada creada.' }
