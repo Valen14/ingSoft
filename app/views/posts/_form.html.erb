@@ -18,30 +18,30 @@
 
   <div class="row">
   <div class="input-field col s12">
-    <%= f.label "Titulo" %>
-    <%= f.text_field :title, class:"active" %>
+    <%= f.label "Titulo" , class:"active"%>
+    <%= f.text_field :title %>
   </div>
 </div>
 
 
   <div class="row">
     <div class="input-field col s12">
-      <p>  <%= f.label "Ciudad" %>   </p></br>
+      <p>  <%= f.label "Ciudad" , class:"active"%>   </p></br>
     <%= select(:post, :city_id, City.all.collect {|p| [ p.name, p.id ] }, {}, { class: 'form-control' }) %>
   </div>
 </div>
 
     <div class="row">
       <div class="input-field col s12">
-        <%= f.label "Descripcion" %>
-        <%= f.text_area :description, length: 100, class:"materialize-textarea", class:"active"%>
+        <%= f.label "Descripcion" , class:"active"%>
+        <%= f.text_area :description, length: 100, class:"materialize-textarea"%>
       </div>
     </div>
 
     <div class="row">
     <div class="input-field col s12">
-      <%= f.label "Foto" %>
-      <%= f.text_field :photo_url , class:"active"%>
+      <%= f.label "Foto" , class:"active"%>
+      <%= f.text_field :photo_url %>
       <em> Por defecto si no se pone ninguna sera el Logo de la pagina </em>
     </div>
   </div>
