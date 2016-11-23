@@ -52,13 +52,13 @@
                     <%= f.hidden_field :post_id, value: @post.id %>
 
                     <div class="input-field col s12">
-                      <%= f.label "Fecha en la que podes hacer la gauchada" %>
+                      <%= f.label "Fecha en la que podes hacer la gauchada", class:"active" %>
                       <%= f.date_field :estimate_date, class: "estimate_date" , required: true %>
                     </div>
 
                     <div class="row">
                       <div class="input-field col s12">
-                         <%= f.label "Descripcion" %>
+                         <%= f.label "Descripcion", class:"active" %>
                          <%= f.text_area :description, length: 100, class:"materialize-textarea",required: true %>
                       </div>
                     </div>

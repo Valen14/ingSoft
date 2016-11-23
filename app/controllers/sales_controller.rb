@@ -32,7 +32,7 @@ class SalesController < ApplicationController
        point =  current_user.point + @sale.points
        User.find(current_user.id).update(point: point )
         if @sale.save
-          format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+          format.html { redirect_to @sale, notice: 'Compra realizada con exito.' }
           format.json { render :show, status: :created, location: @sale }
         else
           format.html { render :new }
