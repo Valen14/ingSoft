@@ -19,7 +19,7 @@
   <div class="row">
   <div class="input-field col s12">
     <%= f.label "Titulo" %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class:"active" %>
   </div>
 </div>
 
@@ -34,14 +34,14 @@
     <div class="row">
       <div class="input-field col s12">
         <%= f.label "Descripcion" %>
-        <%= f.text_area :description, length: 100, class:"materialize-textarea"%>
+        <%= f.text_area :description, length: 100, class:"materialize-textarea", class:"active"%>
       </div>
     </div>
 
     <div class="row">
     <div class="input-field col s12">
       <%= f.label "Foto" %>
-      <%= f.text_field :photo_url %>
+      <%= f.text_field :photo_url , class:"active"%>
       <em> Por defecto si no se pone ninguna sera el Logo de la pagina </em>
     </div>
   </div>

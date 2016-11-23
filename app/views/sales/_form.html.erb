@@ -12,31 +12,31 @@
   <% end %>
 
   <div class="input-field col s12">
-    <%= f.label "Cantindad de Puntos", class:"active" %>
-    <%= f.number_field :points, required: true  %>
+    <%= f.label "Cantindad de Puntos" %>
+    <%= f.number_field :points, required: true, class:"active"  %>
   </div>
   <p> Datos de tarjeta</p>
   <div class="input-field col s12">
     <%= f.label "Numero de Tarjeta", class:"active" %>
-    <%= f.number_field :card_number, required: true  %>
+    <%= f.number_field :card_number, required: true %>
   </div>
 
   <div class="input-field col s12">
-    <%= f.label "fecha vencimiento", class:"active" %>
-    <%= f.date_field :due_date, class:"estimate_date", required: true   %>
+    <%= f.label "fecha vencimiento" %>
+    <%= f.date_field :due_date, class:"estimate_date", required: true, class:"active"   %>
   </div>
   <p> Datos del titular </p>
     <div class="input-field col s12">
-      <%= f.label "Nombre del Titular", class:"active" %>
-      <%= f.text_field :name_titular , required: true %>
+      <%= f.label "Nombre del Titular" %>
+      <%= f.text_field :name_titular , required: true, class:"active" %>
     </div>
     <div class="input-field col s12">
-      <%= f.label "Fecha de Nacimiento", class:"active" %>
-      <%= f.date_field :card_fecha, class:"birthdate" , required: true %>
+      <%= f.label "Fecha de Nacimiento" %>
+      <%= f.date_field :card_fecha, class:"birthdate" , required: true, class:"active" %>
     </div>
     <div class="input-field col s12">
-      <%= f.label "Numero de dni", class:"active" %>
-      <%= f.number_field :dni, required: true  %>
+      <%= f.label "Numero de dni" %>
+      <%= f.number_field :dni, required: true, class:"active"  %>
     </div>
       <div  class="input-field col s12">
         <%= f.submit "Comprar", class: 'btn waves-effect waves-light teal orange' %>
