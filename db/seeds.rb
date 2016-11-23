@@ -14,8 +14,8 @@ puts "add Users"
 User.create(id:"11", name:"usuario_test1" ,dni:"123456", birthdate:"01/01/2016", phone:"1213456" ,is_admin:"false" ,email:"usuario_test1@test.com", password:"usuario_test1" )
 User.create(id:"12", name:"usuario_test2" ,dni:"123456", birthdate:"01/01/2016", phone:"1213456" ,is_admin:"false" ,email:"usuario_test2@test.com", password:"usuario_test2" )
 User.create(id:"13", name:"usuario_test3" ,dni:"123456", birthdate:"01/01/2016", phone:"1213456" ,is_admin:"false" ,email:"usuario_test3@test.com", password:"usuario_test3" )
-
 User.create(id:"0", name:"admin_test" ,dni:"123456", birthdate:"01/01/2016", phone:"1213456" ,is_admin:"true" ,email:"admin_test@test.com", password:"admin_test" )
+
 puts "add Cities"
 City.find_or_create_by(id:"0", name: "La Plata")
 City.find_or_create_by(id:"1", name: "Lisandro Olmos")

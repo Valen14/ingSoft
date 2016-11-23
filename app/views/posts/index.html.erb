@@ -8,7 +8,7 @@
       <li> <%= label_tag  "Titulo: " ,nil,class:"white-text" %>  </li>
       <li> <%= text_field_tag :title, params[:title], class: "form-control ", placeholder: "Ingrese Titulo" %>%>  </li>
       <li> <%= label_tag  "Fecha: " ,nil,class:"white-text" %>  </li>
-      <li>  <%= date_field :created_at , params[:created_at], class: "datepicker " , placeholder: "Elija Fecha" %> </li>
+      <li> <%= date_field :created_at , params[:created_at], class: "datepicker " , placeholder: "Elija Fecha" %> </li>
       <li> <%= label_tag  "Ciudad: " ,nil,class:"white-text" %>  </li>
       <li> <p> <%= select_tag :city_id, options_from_collection_for_select(City.all, "id", "name", params[:city_id]), prompt: "Elija ciudad", class: "form-control blue-grey-text text-lighten-4 " %> </p> </li>
       <li> <%= submit_tag 'search' , class: 'material-icons orange' %>  </li>
