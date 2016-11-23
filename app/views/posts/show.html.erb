@@ -68,17 +68,19 @@
                     </div>
                 <% end %>
               <% else %>
-                  ya estas postulado
-                  <% if (@post.done == nil) && (@post.user_elect_id == current_user.id) %>
-                    <p> el usuario te eligio para que le cumplas el favor</p>
-                    <p> <%= link_to 'Datos de la postulacion', @postulation_choose %></p>
-                  <% else %>
+                ya estas postulado
+                <% if (@post.done == nil) && (@post.user_elect_id != nil) && (@post.user_elect_id == current_user.id)%>
+                  <p> el usuario te eligio para que le cumplas el favor</p>
+                  <p> <%= link_to 'Datos de la postulacion', @postulation_choose %></p>
+                <% else %>
                     <% if @post.done == true %>
                         <p> Ya hiciste la gauchada se te sumo un punto por eso.</p>
-                    <% else %>
+                        <% end %>
+
+                    <% if @post.done == false %>
                         <p> No realisaste la gauchada se te restaron 2 puntos por eso.</p>
                     <% end %>
-                  <% end %>
+                <% end %>
               <% end %>
             <% else %>
               <!-- postulados a este post see only dueño del post-->
