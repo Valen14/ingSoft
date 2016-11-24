@@ -88,10 +88,14 @@
               <% if @post.user_elect_id != nil %>
                 ya elegiste
                 <p> <%= link_to 'Datos de la postulacion', @postulation_choose %></p>
-                <p> El usuario elegido ya cumplio la gauchada ?</p>
                 <% if @post.done == nil %>
-                  <p> <%= link_to 'Si', done_post_path(@post), method: :post %>  </p>
-                  <p> <%= link_to 'No',  not_done_post_path(@post), method: :post  %> </p>
+                  <% if  @postulation_choose.estimate_date <= Date.current  %>
+                    <p> El usuario elegido ya cumplio la gauchada ?</p>
+                    <p> <%= link_to 'Si', done_post_path(@post), method: :post %>  </p>
+                    <p> <%= link_to 'No',  not_done_post_path(@post), method: :post  %> </p>
+                  <% else %>
+                    <p> Todavia no paso la fecha limite:<%= @postulation_choose.estimate_date %> </p>
+                  <% end %>
                 <% else %>
                   <% if @post.done == true %>
                      la gauchada ya fue hecha
@@ -161,7 +165,7 @@
                                     <%= f.text_area :answer, length: 100, class:"materialize-textarea white-text"%>
                                   </div>
                                   <div class="actions">
-                                    <%= f.submit "Responder", class: 'btn waves-effect waves-light teal orange' %>
+                                    <%= f.submit "Responder", class: 'btn waves-effect waves-light teal orange', required: true %>
                                   </div>
                                 <% end %>
                               <% end %>

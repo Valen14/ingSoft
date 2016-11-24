@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20161103184943) do
   create_table "sales", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "points"
-    t.integer  "card_number"
+    t.bigint   "card_number"
     t.date     "due_date"
     t.string   "name_titular"
     t.integer  "dni"

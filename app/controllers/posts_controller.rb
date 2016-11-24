@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    point = current_user.point - 1 
+    point = current_user.point - 1
     User.find(current_user.id).update(point: point )
     respond_to do |format|
       if @post.save
@@ -79,7 +79,7 @@ class PostsController < ApplicationController
   #    @search = @search.where(title: params[:title]) unless params[:title] == ''
   #    @search = @search.where(city_id: params[:city_id]) unless params[:city_id] == ''
   #    @search = @search.where(ciudad: params[:create_at]) unless params[:create_at] == ''
-    if !params[:title].present? and !params[:city_id].present? and !params[:create_at].present?
+    if !params[:title].present? and !params[:city_id].present? and !params[:created_at].present?
       flash[:notice] = 'no ingresaste ningun filtro de busqueda'
     else
       @search = Post.all
