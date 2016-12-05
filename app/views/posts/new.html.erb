@@ -1,9 +1,17 @@
-<div align="center" class="container" >
-	<p id="notice"><%= notice %></p>
-	<div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-		<h5> Publicar una Gauchada </h5>
+<% if user_signed_in? %>
+	<% if current_user.point > 0 %>
+		<div align="center" class="container" >
+			<p id="notice"><%= notice %></p>
+			<div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+				<h5> Publicar una Gauchada </h5>
 
-		<%= render 'form', post: @post %>
+				<%= render 'form', post: @post %>
 
-	</div>
-</div>
+			</div>
+		</div>
+	<% else %>
+	No tenes los puntos necesarios para publicar una gauchada
+	<% end %>
+<% else %>
+Tenes que estar registrado para realzar una gauchada
+<% end %>

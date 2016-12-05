@@ -10,27 +10,27 @@
       <div class="row container">
         <h4>Gauchadas</h4>
         <% @search.each do |post| %>
-          <% if ((post.done != true) && (post.user_elect_id == nil)) %>
-            <!-- Gauchada item -->
-            <div class="col s4">
-                <div class="card medium">
-                  <div  style=" padding:5px " >
-                      <%= post.user.name %>               <%= post.created_at.to_date %>
-                  <h5> <%= post.title %>  </h5>
-                  </div>
-                    <div class="card-image">
-                        <%= image_tag post.photo_url, size:"128x140" %>
-                    </div>
-                    <div class="card-content">
-                        <p><%= truncate( post.description, length: 100, separator: ' ') %></p>
-                    </div>
-                    <div class="card-action">
-                        <%= link_to "Ver mas", post %>
-                    </div>
+        <% if ((post.done != true) && (post.user_elect_id == nil)) %>
+          <!-- Gauchada item -->
+          <div class="col s4">
+              <div class="card medium">
+                <div  style=" padding:5px " >
+                    <%= post.user.name %> | <%= post.created_at.to_date %> | <%= post.city.name %>
+                <h5 class="orange-text"> <%= post.title %>  </h5>
                 </div>
-                </br></br>
-            </div>
-          <% end %>
+                  <div class="card-image">
+                      <%= image_tag post.photo_url, size:"128x140" %>
+                  </div>
+                  <div class="card-content">
+                      <p><%= truncate( post.description, length: 100, separator: ' ') %></p>
+                  </div>
+                  <div class="card-action">
+                      <%= link_to "Ver mas", post %>
+                  </div>
+              </div>
+              </br></br>
+          </div>
+        <% end %>
         <% end %> <!-- ends loop for posts -->
       </div>
     <% end %>

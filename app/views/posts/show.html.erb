@@ -52,13 +52,13 @@
                     <%= f.hidden_field :post_id, value: @post.id %>
 
                     <div class="input-field col s12">
-                      <%= f.label "Fecha en la que podes hacer la gauchada" %>
+                      <%= f.label "Fecha en la que podes hacer la gauchada", class:"active" %>
                       <%= f.date_field :estimate_date, class: "estimate_date" , required: true %>
                     </div>
 
                     <div class="row">
                       <div class="input-field col s12">
-                         <%= f.label "Descripcion" %>
+                         <%= f.label "Descripcion", class:"active" %>
                          <%= f.text_area :description, length: 100, class:"materialize-textarea",required: true %>
                       </div>
                     </div>
@@ -68,11 +68,19 @@
                     </div>
                 <% end %>
               <% else %>
-                  ya estas postulado
-                  <% if @post.user_elect_id == current_user.id %>
-                  el usuario te eligio para que le cumplas el favor
+                ya estas postulado
+                <% if (@post.done == nil) && (@post.user_elect_id != nil) && (@post.user_elect_id == current_user.id)%>
+                  <p> el usuario te eligio para que le cumplas el favor</p>
                   <p> <%= link_to 'Datos de la postulacion', @postulation_choose %></p>
-                  <% end %>
+                <% else %>
+                    <% if @post.done == true %>
+                        <p> Ya hiciste la gauchada se te sumo un punto por eso.</p>
+                        <% end %>
+
+                    <% if @post.done == false %>
+                        <p> No realisaste la gauchada se te restaron 2 puntos por eso.</p>
+                    <% end %>
+                <% end %>
               <% end %>
             <% else %>
               <!-- postulados a este post see only dueño del post-->
@@ -108,9 +116,8 @@
                       <% end %>
                     </div>
                   <% else %>
-                      Aun no ah pasado la fecha que el usuario indico hacer la gauchada.
+                      Aun no ah pasado la fecha que el usuario indico hacer la gauchada. <%= @postulation_choose.estimate_date %>
                   <% end %>
-
                 <% else %>
                   <% if @post.done == true %>
                      <p class="green-text"> la gauchada fue resuelta </p>
@@ -180,7 +187,7 @@
                                     <%= f.text_area :answer, length: 100, class:"materialize-textarea white-text", required: true%>
                                   </div>
                                   <div class="actions">
-                                    <%= f.submit "Responder", class: 'btn waves-effect waves-light teal orange' %>
+                                    <%= f.submit "Responder", class: 'btn waves-effect waves-light teal orange', required: true %>
                                   </div>
                                 <% end %>
                               <% end %>

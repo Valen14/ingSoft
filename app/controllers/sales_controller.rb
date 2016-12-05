@@ -27,12 +27,13 @@ class SalesController < ApplicationController
 
       @sale = Sale.new(sale_params)
       respond_to do |format|
-        if @sale.card_number == 1111222233334444 || @sale.card_number == 4444333322223333
+
+    if @sale.card_number == 1111222233334444 || @sale.card_number == 4444333322223333
        @sale.user_id = current_user.id
        point =  current_user.point + @sale.points
        User.find(current_user.id).update(point: point )
         if @sale.save
-          format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+          format.html { redirect_to @sale, notice: 'Compra realizada con exito.' }
           format.json { render :show, status: :created, location: @sale }
         else
           format.html { render :new }
