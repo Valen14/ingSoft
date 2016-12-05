@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @sales = Sale.all
+
   end
 
   # GET /users/1
@@ -60,6 +62,16 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+ def point_min
+   @user_point = User.order(point: :asc)
+
+ end
+
+ def point_max
+   @user_point = User.order(point: :desc)
+
+ end
 
   private
     # Use callbacks to share common setup or constraints between actions.

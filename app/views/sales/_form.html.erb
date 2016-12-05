@@ -13,12 +13,12 @@
 
   <div class="input-field col s12">
     <%= f.label "Cantindad de Puntos", class:"active" %>
-    <%= f.number_field :points, required: true  %>
+    <%= f.number_field :points, required: true , min: 1 %>
   </div>
   <p> Datos de tarjeta</p>
   <div class="input-field col s12">
     <%= f.label "Numero de Tarjeta", class:"active" %>
-    <%= f.number_field :card_number, required: true  %>
+    <%= f.number_field :card_number, required: true , length: 16 , min: 16  %>
   </div>
 
   <div class="input-field col s12">
@@ -36,7 +36,7 @@
     </div>
     <div class="input-field col s12">
       <%= f.label "Numero de dni", class:"active" %>
-      <%= f.number_field :dni, required: true  %>
+      <%= f.number_field :dni, required: true , length: 8 %>
     </div>
       <div  class="input-field col s12">
         <%= f.submit "Comprar", class: 'btn waves-effect waves-light teal orange' %>

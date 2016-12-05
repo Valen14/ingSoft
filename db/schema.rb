@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20161103184943) do
     t.string   "photo_url",     default: "logo.png"
     t.text     "description"
     t.boolean  "done"
+    t.text     "done_comment"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
@@ -69,7 +70,7 @@ ActiveRecord::Schema.define(version: 20161103184943) do
   create_table "sales", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "points"
-    t.integer  "card_number"
+    t.bigint   "card_number"
     t.date     "due_date"
     t.string   "name_titular"
     t.integer  "dni"

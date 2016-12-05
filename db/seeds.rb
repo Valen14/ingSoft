@@ -47,3 +47,12 @@ Postulation.create(user_id: "13" ,post_id: "3" ,estimate_date: "2016-11-25" ,des
 puts "add comments"
 
 puts "add answers"
+
+puts "add sales"
+
+Sale.find_or_create_by(user_id:"11" ,points:"10" ,card_number:"1111222233334444" ,due_date:"2020-1-31" ,name_titular:"santy" ,dni:"123456" , card_fecha:"1991-5-9" , created_at:"2016-10-1")
+Sale.find_or_create_by(user_id:"11" ,points:"10" ,card_number:"1111222233334444" ,due_date:"2020-1-31" ,name_titular:"santy" ,dni:"123456" , card_fecha:"1991-5-9" , created_at:"2016-11-1")
+Sale.find_or_create_by(user_id:"12" ,points:"10" ,card_number:"1111222233334444" ,due_date:"2020-1-31" ,name_titular:"santy" ,dni:"123456" , card_fecha:"1991-5-9" , created_at:"2016-10-1")
+Sale.find_or_create_by(user_id:"12" ,points:"10" ,card_number:"1111222233334444" ,due_date:"2020-1-31" ,name_titular:"santy" ,dni:"123456" , card_fecha:"1991-5-9" , created_at:"2016-12-1")
+Sale.find_or_create_by(user_id:"13" ,points:"10" ,card_number:"1111222233334444" ,due_date:"2020-1-31" ,name_titular:"santy" ,dni:"123456" , card_fecha:"1991-5-9" , created_at:"2016-11-1")
+Sale.find_or_create_by(user_id:"13" ,points:"10" ,card_number:"1111222233334444" ,due_date:"2020-1-31" ,name_titular:"santy" ,dni:"123456" , card_fecha:"1991-5-9" , created_at:"2016-10-1")

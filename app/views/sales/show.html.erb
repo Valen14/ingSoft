@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <strong>Se te acreditaron: </strong>
-  <%= @sale.points %>
-  <strong> puntos. </strong>
-</p>
+
+<p>  Se te acreditaron: <strong> <%= @sale.points %>  </strong> puntos x 12$ por punto, total: <strong><%= @sale.points*12 %> $</strong></p>
+
+
 
 <%= link_to 'volver al menu principal', posts_path %>

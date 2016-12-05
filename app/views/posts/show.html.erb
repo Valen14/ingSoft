@@ -80,15 +80,42 @@
               <% if @post.user_elect_id != nil %>
                 ya elegiste
                 <p> <%= link_to 'Datos de la postulacion', @postulation_choose %></p>
-                <p> El usuario elegido ya cumplio la gauchada ?</p>
                 <% if @post.done == nil %>
-                  <p> <%= link_to 'Si', done_post_path(@post), method: :post %>  </p>
-                  <p> <%= link_to 'No',  not_done_post_path(@post), method: :post  %> </p>
+                  <% if  @postulation_choose.estimate_date <= Date.current  %>
+                    <div class="col s6">
+                      <%= form_for @post , url: done_post_path  do |f| %>
+                      <p> El usuario elegido ya cumplio la gauchada </p>
+                        <div class="field">
+                          <%= f.label "Comentario", required: true, class: "green-text" %>
+                          <%= f.text_area :done_comment, length: 100, class:"materialize-textarea", required: true %>
+                        </div>
+                        <div class="actions">
+                          <%= f.submit "Cumplio", class: 'btn waves-effect waves-light teal orange' %>
+                        </div>
+                      <% end %>
+                    </div>
+
+                    <div class="col s6">
+                      <%= form_for @post , url: not_done_post_path  do |f| %>
+                      <p> El usuario elegido no cumplio la gauchada </p>
+                        <div class="field">
+                          <%= f.label "Motivo", required: true, class: "red-text" %>
+                          <%= f.text_area :done_comment, length: 100, class:"materialize-textarea", required: true %>
+                        </div>
+                        <div class="actions">
+                          <%= f.submit "No Cumplio", class: 'btn waves-effect waves-light teal orange' %>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% else %>
+                      Aun no ah pasado la fecha que el usuario indico hacer la gauchada.
+                  <% end %>
+
                 <% else %>
                   <% if @post.done == true %>
-                     la gauchada ya fue hecha
+                     <p class="green-text"> la gauchada fue resuelta </p>
                   <% else %>
-                     la gauchada no fue hecha
+                      <p class="red-text"> la gauchada no fue resuelta </p>
                   <% end %>
                 <% end %>
 
@@ -150,7 +177,7 @@
                                   <%= f.hidden_field :comment_id, value: comment.id %>
                                   <div class="field">
                                     <%= f.label "Responder", required: true, class: "white-text" %>
-                                    <%= f.text_area :answer, length: 100, class:"materialize-textarea white-text"%>
+                                    <%= f.text_area :answer, length: 100, class:"materialize-textarea white-text", required: true%>
                                   </div>
                                   <div class="actions">
                                     <%= f.submit "Responder", class: 'btn waves-effect waves-light teal orange' %>

@@ -27,7 +27,7 @@ class SalesController < ApplicationController
 
       @sale = Sale.new(sale_params)
       respond_to do |format|
-    if @sale.card_number == 12345 || @sale.card_number == 54321
+        if @sale.card_number == 1111222233334444 || @sale.card_number == 4444333322223333
        @sale.user_id = current_user.id
        point =  current_user.point + @sale.points
        User.find(current_user.id).update(point: point )
@@ -66,6 +66,22 @@ class SalesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def earnings
+    if params[:max].present? and params[:min].present?
+      datemin = DateTime.parse(params[:min].first)
+      datemax = DateTime.parse(params[:max].first)
+
+      if datemax > datemin
+        @earnings = Sale.all
+        @earnings = @earnings.where("created_at > ? and created_at < ?", params[:min], params[:max])
+      else
+        flash[:notice] = 'la fecha mayor es menor que la fecha menor'
+      end
+    else
+      flash[:notice] = 'no ingresaste ningun filtro de busqueda'
     end
   end
 

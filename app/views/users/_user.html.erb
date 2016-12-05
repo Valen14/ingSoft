@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Logro</th>
+      <th>Cantidad de puntos</th>
+      <th>Nombre</th>
+      <th>Dni</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Tel</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% user_point.each do |user| %>
+      <tr>
+        <td><%= user.achievement.name %></td>
+        <td><%= user.point %></td>
+        <td><%= user.name %></td>
+        <td><%= user.dni %></td>
+        <td><%= user.birthdate %></td>
+        <td><%= user.phone %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div align="right">
+  <%= link_to "Volver", current_user, class: 'btn waves-effect waves-light teal orange' %></br></br>
+</div>

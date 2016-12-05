@@ -7,7 +7,8 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :photo_url  , default: "logo.png"
       t.text :description
-      t.boolean :done 
+      t.boolean :done
+      t.text :done_comment
 
       t.timestamps
     end

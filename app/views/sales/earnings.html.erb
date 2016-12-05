@@ -1,0 +1,60 @@
+
+	<p id="notice"><%= notice %></p>
+
+       <% if @earnings != nil %>
+
+         <% if @earnings.empty? %>
+           tu busqueda no produjo Resultados
+         <% else %>
+				 <div align="center" class="container" >
+			 	<div class="col s12 z-depth-4 card-panel" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+         <div class="row">
+          <h5> Ganancias entre fechas:   </h5>
+         		resultados de la busqueda:
+          <table>
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Puntos</th>
+                <th>Sub Total</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @subtotalpuntos = 0 %>
+              <% @subtotalprice = 0 %>
+
+              <% @earnings.each do |sale| %>
+                <% @subtotalpuntos = @subtotalpuntos + sale.points %>
+                <% @price = 12 * sale.points %>
+                <% @subtotalprice = @subtotalprice + @price %>
+                <tr>
+                  <td><%= sale.user.name %></td>
+                  <td><%= sale.points %></td>
+                  <td><%= @price %></td>
+                  <td><%= sale.created_at.to_date %></td>
+                </tr>
+              <% end %>
+              <tr>
+                <td> </td>
+                <td> </td>
+
+                <td>sub total puntos:<%= @subtotalpuntos %> </td>
+                <td>total plata: <%= @subtotalprice %></td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <br>
+
+          <div align="right">
+            <%= link_to "Volver", current_user, class: 'btn waves-effect waves-light teal orange' %></br></br>
+          </div>
+
+        </div>
+			</div>
+			</div>
+  <% end %>
+<% end %>

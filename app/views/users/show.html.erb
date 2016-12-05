@@ -2,13 +2,88 @@
 
 <% if user_signed_in? %>
     <% if current_user.is_admin %>
-      <%= link_to "Logros", achievements_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
+
+      <div align="left" class="container col s6 z-depth-4 card-panel" >
+        <div class="col s6 " style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+          <div class="row">
+            <%= link_to "Panel de Logros", achievements_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
+
+            <%= link_to "puntos minimos", point_min_user_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
+            <%= link_to "puntos maximos", point_max_user_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
+          </div>
+        </div>
+        <div class="col s6 " style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+          <div class="row">
+        ganancia entre 2 fechas
+        <%= form_tag earnings_sale_path do %>
+        <%= label_tag  "Fecha1: "  %>
+        <%= date_field :min , params[:min], class: "datepicker " , placeholder: "Elija Fecha" %>
+        <%= label_tag  "Fecha2: " %>
+        <%= date_field :max , params[:max], class: "datepicker " , placeholder: "Elija Fecha" %>
+        <%= submit_tag 'search' , class: 'material-icons orange' %>
+        <% end %>
+          </div>
+        </div>
+      </div>
     <% else %>
       <p class="orange-text"> Puntos <%= current_user.point %> </p></br></br>
       <%= link_to "Editar Perfil", edit_user_registration_path(current_user), class: 'btn waves-effect waves-light teal orange' %></br></br>
       <%= link_to "Publicar Gauchada", new_post_path(current_user), class: 'btn waves-effect waves-light teal orange' %></br></br>
     <% end %>
-
+      <div class="row container">
+    <h5>postulaciones pendientes </h5>
+    <% @posts = Post.all %>
+    <% @posts.each do |post| %>
+      <% if ((post.done == nil ) && (post.user_elect_id != nil) && ( (post.user_elect_id == current_user.id ) || (post.user_id == current_user.id ) )) %>
+        <!-- Gauchada item -->
+        <div class="col s4">
+            <div class="card medium">
+              <div  style=" padding:5px " >
+                  <%= post.user.name %> | <%= post.created_at.to_date %> | <%= post.city.name %>
+              <h5 class="orange-text"> <%= post.title %>  </h5>
+              </div>
+                <div class="card-image">
+                    <%= image_tag post.photo_url, size:"128x140" %>
+                </div>
+                <div class="card-content">
+                    <p><%= truncate( post.description, length: 100, separator: ' ') %></p>
+                </div>
+                <div class="card-action">
+                    <%= link_to "Ver mas", post %>
+                </div>
+            </div>
+            </br></br>
+        </div>
+      <% end %>
+    <% end %>
+            </div>
+            <div class="row container">
+          <h5>postulaciones terminadas </h5>
+          <% @posts = Post.all %>
+          <% @posts.each do |post| %>
+            <% if ((post.done != nil ) && (post.user_elect_id != nil) && ( (post.user_elect_id == current_user.id ) || (post.user_id == current_user.id ) )) %>
+              <!-- Gauchada item -->
+              <div class="col s4">
+                  <div class="card medium">
+                    <div  style=" padding:5px " >
+                        <%= post.user.name %> | <%= post.created_at.to_date %> | <%= post.city.name %>
+                    <h5 class="orange-text"> <%= post.title %>  </h5>
+                    </div>
+                      <div class="card-image">
+                          <%= image_tag post.photo_url, size:"128x140" %>
+                      </div>
+                      <div class="card-content">
+                          <p><%= truncate( post.description, length: 100, separator: ' ') %></p>
+                      </div>
+                      <div class="card-action">
+                          <%= link_to "Ver mas", post %>
+                      </div>
+                  </div>
+                  </br></br>
+              </div>
+            <% end %>
+          <% end %>
+                  </div>
 <% else %>
   <p id="notice">Solo Usuarios registrados</p>
 <% end %>
