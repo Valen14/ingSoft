@@ -7,7 +7,6 @@
         <div class="col s6 " style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
           <div class="row">
             <%= link_to "Panel de Logros", achievements_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
-
             <%= link_to "puntos minimos", point_min_user_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
             <%= link_to "puntos maximos", point_max_user_path, class: 'btn waves-effect waves-light teal orange' %></br></br>
           </div>
@@ -30,11 +29,13 @@
       <%= link_to "Editar Perfil", edit_user_registration_path(current_user), class: 'btn waves-effect waves-light teal orange' %></br></br>
       <%= link_to "Publicar Gauchada", new_post_path(current_user), class: 'btn waves-effect waves-light teal orange' %></br></br>
     <% end %>
-      <div class="row container">
-    <h5>postulaciones pendientes </h5>
+
+    <h4 class="orange-text">postulaciones pendientes </h4>
+    <div class="row container">
+      <h5>pendientes que me realicen</h5>
     <% @posts = Post.all %>
     <% @posts.each do |post| %>
-      <% if ((post.done == nil ) && (post.user_elect_id != nil) && ( (post.user_elect_id == current_user.id ) || (post.user_id == current_user.id ) )) %>
+      <% if ((post.done == nil ) &&  (post.user_id == current_user.id ) ) %>
         <!-- Gauchada item -->
         <div class="col s4">
             <div class="card medium">
@@ -56,12 +57,44 @@
         </div>
       <% end %>
     <% end %>
+    </div>
+    <div class="row container">
+
+      <h5>pendientes que tengo que hacer</h5>
+    <% @posts = Post.all %>
+    <% @posts.each do |post| %>
+      <% if ((post.done == nil ) && (post.user_elect_id != nil) && (post.user_elect_id == current_user.id ) ) %>
+        <!-- Gauchada item -->
+        <div class="col s4">
+            <div class="card medium">
+              <div  style=" padding:5px " >
+                  <%= post.user.name %> | <%= post.created_at.to_date %> | <%= post.city.name %>
+              <h5 class="orange-text"> <%= post.title %>  </h5>
+              </div>
+                <div class="card-image">
+                    <%= image_tag post.photo_url, size:"128x140" %>
+                </div>
+                <div class="card-content">
+                    <p><%= truncate( post.description, length: 100, separator: ' ') %></p>
+                </div>
+                <div class="card-action">
+                    <%= link_to "Ver mas", post %>
+                </div>
             </div>
-            <div class="row container">
-          <h5>postulaciones terminadas </h5>
-          <% @posts = Post.all %>
-          <% @posts.each do |post| %>
-            <% if ((post.done != nil ) && (post.user_elect_id != nil) && ( (post.user_elect_id == current_user.id ) || (post.user_id == current_user.id ) )) %>
+            </br></br>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+
+
+
+  <h4 class="orange-text">postulaciones concretadas </h4>
+    <div class="row container">
+    <h5>postulaciones que concrete </h5>
+    <% @posts = Post.all %>
+    <% @posts.each do |post| %>
+      <% if ((post.done == true ) && (post.user_elect_id != nil) &&  (post.user_elect_id == current_user.id )  ) %>
               <!-- Gauchada item -->
               <div class="col s4">
                   <div class="card medium">
@@ -81,9 +114,40 @@
                   </div>
                   </br></br>
               </div>
-            <% end %>
-          <% end %>
+      <% end %>
+    <% end %>
+    </div>
+
+    <div class="row container">
+    <h5>postulaciones que me concretaron </h5>
+    <% @posts = Post.all %>
+    <% @posts.each do |post| %>
+      <% if ((post.done == true ) && (post.user_elect_id != nil) &&  (post.user_id == current_user.id ) ) %>
+              <!-- Gauchada item -->
+              <div class="col s4">
+                  <div class="card medium">
+                    <div  style=" padding:5px " >
+                        <%= post.user.name %> | <%= post.created_at.to_date %> | <%= post.city.name %>
+                    <h5 class="orange-text"> <%= post.title %>  </h5>
+                    </div>
+                      <div class="card-image">
+                          <%= image_tag post.photo_url, size:"128x140" %>
+                      </div>
+                      <div class="card-content">
+                          <p><%= truncate( post.description, length: 100, separator: ' ') %></p>
+                      </div>
+                      <div class="card-action">
+                          <%= link_to "Ver mas", post %>
+                      </div>
                   </div>
+                  </br></br>
+              </div>
+      <% end %>
+    <% end %>
+    </div>
+
+
+
 <% else %>
   <p id="notice">Solo Usuarios registrados</p>
 <% end %>
