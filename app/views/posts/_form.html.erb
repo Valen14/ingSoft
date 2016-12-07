@@ -28,31 +28,25 @@
   <div class="row">
     <div class="input-field col s12">
       <p>  <%= f.label "Ciudad" , class:"active"%>   </p></br>
-    <%= select(:post, :city_id, City.all.collect {|p| [ p.name, p.id ] }, {}, { class: 'form-control' }), required: true %>
+    <%= select(:post, :city_id, City.all.collect {|p| [ p.name, p.id ] }, {}, { class: 'form-control' }) %>
   </div>
 </div>
 
     <div class="row">
       <div class="input-field col s12">
-<<<<<<< HEAD
-        <%= f.label "Descripcion" %>
-        <%= f.text_area :description, length: 100, class:"materialize-textarea", required: true %>
-=======
+
         <%= f.label "Descripcion" , class:"active"%>
-        <%= f.text_area :description, length: 100, class:"materialize-textarea", required: true%>
->>>>>>> adc316be59fd89136b6eb7d189eb9aed2b2dac3e
+        <%= f.text_area :description, length: 100, class:"materialize-textarea", required: true %>
+
       </div>
     </div>
 
     <div class="row">
     <div class="input-field col s12">
-<<<<<<< HEAD
-      <%= f.label "Foto" %>
-      <%= f.text_field :photo_url , required: true %>
-=======
+
       <%= f.label "Foto" , class:"active"%>
       <%= f.text_field :photo_url, required: true %>
->>>>>>> adc316be59fd89136b6eb7d189eb9aed2b2dac3e
+
       <em> Por defecto si no se pone ninguna sera el Logo de la pagina </em>
     </div>
   </div>

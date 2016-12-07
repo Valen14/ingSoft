@@ -36,7 +36,7 @@
     </div>
     <div class="input-field col s12">
       <%= f.label "Numero de dni", class:"active" %>
-      <%= f.number_field :dni, required: true , length: 8 %>
+      <%= f.number_field :dni, required: true , length: 8, min: 8  %>
     </div>
       <div  class="input-field col s12">
         <%= f.submit "Comprar", class: 'btn waves-effect waves-light teal orange' %>

@@ -133,7 +133,7 @@
                     <thead>
                       <tr>
                         <th>Nombre</th>
-                        <th>Putos</th>
+                        <th>Logro</th>
                         <th>Dia estimado</th>
                         <th>Descricion</th>
                         <th colspan="1"></th>
@@ -144,7 +144,7 @@
                       <% @postulations.each do |postulation| %>
                         <tr>
                           <td><%= postulation.user.name %></td>
-                          <td><%= postulation.user.point %></td>
+                          <td><%= postulation.user.achievement.name %></td>
                           <td><%= postulation.estimate_date %></td>
                           <td><%= postulation.description %></td>
                           <td><%= link_to 'Elegir', edit_postulation_path(postulation) %></td>

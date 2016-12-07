@@ -74,7 +74,7 @@ class PostsController < ApplicationController
   end
 
     def search
-    if !params[:title].present? and !params[:city_id].present? and !params[:create_at].present?
+    if !params[:title].present? and !params[:city_id].present? and params[:created_at].present?
       flash[:notice] = 'no ingresaste ningun filtro de busqueda'
     else
       @search = Post.all
@@ -84,8 +84,8 @@ class PostsController < ApplicationController
       if params[:city_id].present?
         @search = @search.where("city_id = ?", params[:city_id])
       end
-      if params[:create_at].present?
-        @search = @search.where("created_at = ?", params[:created_at])
+      if params[:created_at].present?
+        @search = @search.where("DATE(created_at) = ?", params[:created_at])
       end
     end
   end

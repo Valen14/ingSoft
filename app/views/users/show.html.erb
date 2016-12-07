@@ -16,9 +16,9 @@
         ganancia entre 2 fechas
         <%= form_tag earnings_sale_path do %>
         <%= label_tag  "Fecha1: "  %>
-        <%= date_field :min , params[:min], class: "datepicker " , placeholder: "Elija Fecha" %>
+        <%= date_field :min , params[:min], class: "datepicker " , placeholder: "Elija Fecha", required: true %>
         <%= label_tag  "Fecha2: " %>
-        <%= date_field :max , params[:max], class: "datepicker " , placeholder: "Elija Fecha" %>
+        <%= date_field :max , params[:max], class: "datepicker " , placeholder: "Elija Fecha", required: true %>
         <%= submit_tag 'search' , class: 'material-icons orange' %>
         <% end %>
           </div>

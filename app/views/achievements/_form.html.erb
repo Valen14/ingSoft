@@ -3,21 +3,21 @@
 		<div class="row">
 			<div class="input-field col s12">
 				<%= f.label "nombre", class:"active"  %>
-  				<%= f.text_field :name , class: 'validate'%>
+  				<%= f.text_field :name , class: 'validate', required: true %>
   			</div>
   		</div>
 
 		<div class="row">
 			<div class="input-field col s12">
 				<%= f.label "puntos minimos", class:"active" %>
-  				<%= f.text_field :point_min , class: 'validate', label: 'puntos minimos' %>
+  				<%= f.text_field :point_min , class: 'validate', label: 'puntos minimos', required: true %>
   			</div>
   		</div>
 
 		<div class="row">
 			<div class="input-field col s12">
 				<%= f.label "puntos maximos", class:"active" %>
-  				<%= f.text_field :point_max , class: 'validate', label: 'puntos maximos' %>
+  				<%= f.text_field :point_max , class: 'validate', label: 'puntos maximos', required: true %>
   			</div>
   		</div>
   		<%= f.submit "Guardar", class: 'btn waves-effect waves-light teal orange' %>
