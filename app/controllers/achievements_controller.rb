@@ -51,8 +51,8 @@ class AchievementsController < ApplicationController
     @users = User.all
     respond_to do |format|
       if not(@users.find_by achievement_id: @achievement.id)
-        if(@achievement.name != nil and @achievement.point_min != nil and @achievement.point_max != nil)
-              if (  @achievement.point_min < @achievement.point_max )
+        if(params[:point_max].present? and params[:point_min].present? and params[:name].present? )
+              if ( params[:point_min]  < params[:point_max])
                       if ( nosuperpuse())
                         if @achievement.update(achievement_params)
                           format.html { redirect_to achievements_url, notice: 'Logro editado correctamente.' }

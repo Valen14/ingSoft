@@ -74,7 +74,7 @@ class PostsController < ApplicationController
   end
 
     def search
-    if !params[:title].present? and !params[:city_id].present? and params[:created_at].present?
+    if !params[:title].present? and !params[:city_id].present? and !params[:created_at].present?
       flash[:notice] = 'no ingresaste ningun filtro de busqueda'
     else
       @search = Post.all
